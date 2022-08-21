@@ -45,22 +45,4 @@ const Settings: NextPage = () => {
 
 export default Settings;
 
-export const getServerSideProps: GetServerSideProps =
-	async ctx => {
-		const {
-			["rica-adm.token"]: token,
-		} = parseCookies(ctx);
 
-		if (!token) {
-			return {
-				redirect: {
-					destination:
-						"/auth",
-					permanent: false,
-				},
-			};
-		}
-		return {
-			props: {},
-		};
-	};

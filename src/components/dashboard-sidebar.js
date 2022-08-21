@@ -127,7 +127,9 @@ export const DashboardSidebar =
 								<Typography
 									variant="h4"
 									//textAlign={'center'}
-									color="primary"
+									sx={{
+										color: "#ffffff",
+									}}
 								>
 									{/* <AccountBalanceIcon
                                     fontSize="large"

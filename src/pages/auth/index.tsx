@@ -1,6 +1,7 @@
 // import { useRouter } from 'next/router';
 // import { useFormik } from 'formik';
 // import * as Yup from 'yup';
+import Router from "next/router";
 import {
 	Avatar,
 	AvatarGroup,
@@ -80,11 +81,12 @@ const Auth = () => {
 		values: SignInData,
 	) => {
 		setIsLoading(true);
-		const response = await SignIn(
-			values,
-		).finally(() =>
-			setIsLoading(false),
-		);
+		Router.push("/");
+		// const response = await SignIn(
+		// 	values,
+		// ).finally(() =>
+		// 	setIsLoading(false),
+		// );
 	};
 
 	return (
@@ -102,14 +104,15 @@ const Auth = () => {
 				md={7}
 				sx={{
 					backgroundImage:
-						"url(/static/images/figura/FUNDO.png)",
-					color: "#e5f9da",
+						"url(/static/img/bg2.jpg)",
+					color: "#ffffff",
 					backgroundRepeat:
 						"no-repeat",
 					backgroundSize:
 						"cover",
 					backgroundPosition:
 						"center",
+					opacity: 0.9,
 				}}
 				component={Paper}
 			>
@@ -126,7 +129,7 @@ const Auth = () => {
 							"column",
 						justifyContent:
 							"center",
-						gap: "5rem",
+						gap: "4rem",
 					}}
 				>
 					<Container maxWidth="sm">
@@ -136,12 +139,13 @@ const Auth = () => {
 							fontSize={
 								40
 							}
+							sx={{
+								fontWeight: 700,
+							}}
 							gutterBottom
 						>
-							Revista
-							Interdisciplinar
-							Científica
-							Aimoré
+							{/* INTERFIN */}
+							Interfin - Gestão e Negócios Ltda.
 						</Typography>
 						<Stack
 							direction="row"
@@ -253,7 +257,14 @@ const Auth = () => {
 						onSubmit={handleSubmit(
 							onSubmit,
 						)}
-						sx={{ mt: 1 }}
+						sx={{
+							mt: 1,
+							gap: "1.5rem",
+							display: "flex",
+							flexDirection: "column",
+							width: "100%",
+							height: "100%",
+						}}
 					>
 						<TextField
 							error={Boolean(
@@ -321,7 +332,7 @@ const Auth = () => {
 									senha?
 								</Link>
 							</Grid>
-							<Grid item>
+							{/* <Grid item>
 								<Link
 									href="/register"
 									variant="body2"
@@ -330,7 +341,7 @@ const Auth = () => {
 										"Inscrever-se"
 									}
 								</Link>
-							</Grid>
+							</Grid> */}
 						</Grid>
 
 						<Button
@@ -359,60 +370,6 @@ const Auth = () => {
 								/>
 							)}
 						</Button>
-
-						<Grid
-							container
-							spacing={2}
-						>
-							<Box
-								sx={{
-									display:
-										"flex",
-									flexDirection:
-										"row",
-									alignItems:
-										"center",
-									justifyContent:
-										"center",
-									mt: 2,
-									width: "100%",
-								}}
-							>
-								<Typography
-									align="center"
-									color="textSecondary"
-									variant="body1"
-								>
-									ou
-									faça
-									login
-									com
-									o
-									endereço
-									de
-									e-mail
-								</Typography>
-							</Box>
-							<Grid
-								item
-								xs={12}
-								md={12}
-							>
-								<Button
-									fullWidth
-									color="error"
-									startIcon={
-										<GoogleIcon />
-									}
-									size="large"
-									variant="contained"
-								>
-									Login
-									with
-									Google
-								</Button>
-							</Grid>
-						</Grid>
 					</Box>
 				</Box>
 			</Grid>
