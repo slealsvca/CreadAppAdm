@@ -94,15 +94,15 @@ const Auth = () => {
 			container
 			component="main"
 			sx={{
-				height: "100%", 
-				backgroundColor: "red"
+				minHeight: '99vh',
+				backgroundColor: "#d3d3d3"
 				// background:
 				// 	'url("/static/img/bg3.jpg") center top / cover transparent',
 
 			}}
 		>
 			<HeadComponent title="Login" />
-			<CssBaseline />
+			{/* <CssBaseline /> */}
 
 			<Grid
 				item
@@ -115,6 +115,9 @@ const Auth = () => {
 				display={'flex'}
 				alignItems={'center'}
 				justifyContent={'center'}
+				sx={{
+					backgroundImage: 'url(/static/img/bg3.jpg)',
+				}}
 			>
 				<Grid
 					xs={12}
@@ -130,6 +133,7 @@ const Auth = () => {
 						alignItems:
 							"center",
 						border: '1px solid #dbdad9',
+						backgroundColor: 'white',
 						padding: '40px',
 					}}
 

@@ -108,7 +108,7 @@ export const DashboardNavbar =
 								flexGrow: 1,
 							}}
 						/>
-						<Tooltip title="Contacts">
+						{/* <Tooltip title="Contacts">
 							<IconButton
 								sx={{
 									ml: 1,
@@ -116,7 +116,7 @@ export const DashboardNavbar =
 							>
 								<UsersIcon fontSize="small" />
 							</IconButton>
-						</Tooltip>
+						</Tooltip> */}
 						<Tooltip title="Notifications">
 							<IconButton
 								sx={{
@@ -152,7 +152,7 @@ export const DashboardNavbar =
 										width: 40,
 										ml: 1,
 									}}
-									src="/static/images/avatars/avatar_1.png"
+									src="/static/images/avatars/avatar_11.png"
 								>
 									<UserCircleIcon fontSize="small" />
 								</Avatar>

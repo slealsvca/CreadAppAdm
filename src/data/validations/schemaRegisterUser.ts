@@ -39,7 +39,7 @@ export const Schema = Yup.object()
 		titration:
 			Yup.string().required(
 				REQUIRED_VALIDATION(
-					"Titulação",
+					"Função",
 				),
 			),
 		institute:

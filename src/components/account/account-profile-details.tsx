@@ -330,7 +330,7 @@ export const AccountProfileDetails = (
 												.titration
 												.message
 										}
-										label="Titulação"
+										label="Função"
 										variant="outlined"
 									/>
 								)}

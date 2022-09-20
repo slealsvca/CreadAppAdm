@@ -176,9 +176,9 @@ export const DashboardSidebar =
 										color="neutral.400"
 										variant="body2"
 									>
-										Ofício
+										Função 
 										:
-										Adm
+										Administrador
 									</Typography>
 								</div>
 								<SelectorIcon
