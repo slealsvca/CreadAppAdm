@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 	return (
 		<DashboardLayout>
 			<HeadComponent title="Dashboard" />
-			<Box
+			{/* <Box
 				component="main"
 				sx={{
 					flexGrow: 1,
@@ -120,7 +120,7 @@ const Home: NextPage = () => {
 						</Grid>
 					</Grid>
 				</Container>
-			</Box>
+			</Box> */}
 		</DashboardLayout>
 	);
 };

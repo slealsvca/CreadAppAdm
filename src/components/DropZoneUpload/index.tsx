@@ -28,7 +28,7 @@ const DropZoneUpload = React.forwardRef<
 	const { file, ...rest } = props;
 
 	const [name, setName] = useState(
-		"Arraste e solte um arquivo ou selecione um arquivo",
+		"Arraste e solte um arquivo ou selecione um vídeo",
 	);
 
 	useEffect(() => {
@@ -54,7 +54,7 @@ const DropZoneUpload = React.forwardRef<
 				fullWidth
 				variant="contained"
 			>
-				Selecionar arquivo
+				Selecionar vídeo
 			</Button>
 
 			<Box

@@ -93,137 +93,46 @@ const Auth = () => {
 		<Grid
 			container
 			component="main"
-			sx={{ height: "100%" }}
+			sx={{
+				height: "100%", 
+				backgroundColor: "red"
+				// background:
+				// 	'url("/static/img/bg3.jpg") center top / cover transparent',
+
+			}}
 		>
 			<HeadComponent title="Login" />
 			<CssBaseline />
-			<Grid
-				item
-				xs={false}
-				sm={12}
-				md={7}
-				sx={{
-					backgroundImage:
-						"url(/static/img/bg2.jpg)",
-					color: "#ffffff",
-					backgroundRepeat:
-						"no-repeat",
-					backgroundSize:
-						"cover",
-					backgroundPosition:
-						"center",
-					opacity: 0.9,
-				}}
-				component={Paper}
-			>
-				<Box
-					component="main"
-					sx={{
-						alignItems:
-							"center",
-						display: "flex",
-						flexGrow: 1,
-						minHeight:
-							"100%",
-						flexDirection:
-							"column",
-						justifyContent:
-							"center",
-						gap: "4rem",
-					}}
-				>
-					<Container maxWidth="sm">
-						<Typography
-							variant="h1"
-							align="center"
-							fontSize={
-								40
-							}
-							sx={{
-								fontWeight: 700,
-							}}
-							gutterBottom
-						>
-							{/* INTERFIN */}
-							Interfin - Gestão e Negócios Ltda.
-						</Typography>
-						<Stack
-							direction="row"
-							spacing={2}
-							alignItems="center"
-							style={{
-								width: "100%",
-								display:
-									"flex",
-								justifyContent:
-									"center",
-							}}
-						>
-							<AvatarGroup
-								max={5}
-								spacing={
-									2
-								}
-								total={
-									25
-								}
-							>
-								<Avatar
-									alt="Cindy Baker"
-									src="/static/images/avatars/avatar_3.png"
-									sx={{
-										width: 50,
-										height: 50,
-									}}
-								/>
-								<Avatar
-									alt="Agnes Walker"
-									src="/static/images/avatars/avatar_4.png"
-									sx={{
-										width: 50,
-										height: 50,
-									}}
-								/>
-								<Avatar
-									alt="Trevor Henderson"
-									src="/static/images/avatars/avatar_5.png"
-									sx={{
-										width: 50,
-										height: 50,
-									}}
-								/>
-								<Avatar
-									alt="Trevor Henderson"
-									src="/static/images/avatars/avatar_6.png"
-									sx={{
-										width: 50,
-										height: 50,
-									}}
-								/>
-							</AvatarGroup>
-						</Stack>
-					</Container>
-				</Box>
-			</Grid>
+
 			<Grid
 				item
 				xs={12}
 				sm={12}
-				md={5}
+				md={12}
 				component={Paper}
 				elevation={6}
 				square
+				display={'flex'}
+				alignItems={'center'}
+				justifyContent={'center'}
 			>
-				<Box
+				<Grid
+					xs={12}
+					sm={12}
+					md={6}
 					sx={{
 						my: 8,
 						mx: 4,
 						display: "flex",
 						flexDirection:
 							"column",
+						borderRadius: '10px',
 						alignItems:
 							"center",
+						border: '1px solid #dbdad9',
+						padding: '40px',
 					}}
+
 				>
 					<Avatar
 						sx={{
@@ -238,7 +147,7 @@ const Auth = () => {
 						component="h1"
 						variant="h5"
 					>
-						Sign in
+						INTERFIN
 					</Typography>
 
 					<Typography
@@ -371,7 +280,7 @@ const Auth = () => {
 							)}
 						</Button>
 					</Box>
-				</Box>
+				</Grid>
 			</Grid>
 		</Grid>
 	);

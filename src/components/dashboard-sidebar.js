@@ -37,20 +37,20 @@ const items = [
 		),
 		title: "Publicações",
 	},
-	{
-		href: "/articles",
-		icon: (
-			<ArticleIcon fontSize="small" />
-		),
-		title: "Artigos",
-	},
-	{
-		href: "/accessControl",
-		icon: (
-			<LockClockIcon fontSize="small" />
-		),
-		title: "Controle de acesso",
-	},
+	// {
+	// 	href: "/articles",
+	// 	icon: (
+	// 		<ArticleIcon fontSize="small" />
+	// 	),
+	// 	title: "Artigos",
+	// },
+	// {
+	// 	href: "/accessControl",
+	// 	icon: (
+	// 		<LockClockIcon fontSize="small" />
+	// 	),
+	// 	title: "Controle de acesso",
+	// },
 ];
 
 export const DashboardSidebar =
@@ -176,9 +176,9 @@ export const DashboardSidebar =
 										color="neutral.400"
 										variant="body2"
 									>
-										Titulação
+										Ofício
 										:
-										Revisor
+										Adm
 									</Typography>
 								</div>
 								<SelectorIcon
@@ -228,7 +228,7 @@ export const DashboardSidebar =
 								"#2D3748",
 						}}
 					/>
-					<Box
+					{/* <Box
 						sx={{
 							px: 2,
 							py: 3,
@@ -260,7 +260,6 @@ export const DashboardSidebar =
 									},
 							}}
 						>
-							{/* eslint-disable-next-line @next/next/no-img-element*/}
 							<img
 								alt="Go to pro"
 								src="/static/images/sidebar_pro.png"
@@ -286,7 +285,7 @@ export const DashboardSidebar =
 								desenvolvimento
 							</Button>
 						</NextLink>
-					</Box>
+					</Box> */}
 				</Box>
 			</>
 		);
