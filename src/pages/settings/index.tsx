@@ -3,7 +3,7 @@ import {
 	Container,
 	Typography,
 } from "@mui/material";
-import { DashboardLayout } from "../../components/dashboard-layout";
+import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { SettingsNotifications } from "../../components/settings/settings-notifications";
 import { SettingsPassword } from "../../components/settings/settings-password";
 import { parseCookies } from "nookies";

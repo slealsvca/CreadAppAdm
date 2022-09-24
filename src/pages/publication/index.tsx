@@ -12,7 +12,7 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { DashboardLayout } from "../../components/dashboard-layout";
+import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { parseCookies } from "nookies";
 import { GetServerSideProps } from "next";
 import HeadComponent from "../../components/Head";

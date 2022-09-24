@@ -1,4 +1,4 @@
-import { DashboardLayout } from "../../components/dashboard-layout";
+import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { parseCookies } from "nookies";
 import { GetServerSideProps } from "next";
 import HeadComponent from "../../components/Head";
@@ -34,7 +34,7 @@ import {
 	accessControl,
 	deleteUsers,
 } from "../../store/api/accessControl";
-import { SeverityPill } from "../../components/severity-pill";
+import { SeverityPill } from "../../components/DashboardSidebar/severity-pill";
 import { Loader } from "../../components/Loader";
 import FormModal from "../../components/FormModal";
 import { Alerts } from "../../components/Alert";

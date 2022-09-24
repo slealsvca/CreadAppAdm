@@ -17,7 +17,7 @@ import {
 	Tooltip,
 	Typography,
 } from "@mui/material";
-import { DashboardLayout } from "../../components/dashboard-layout";
+import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { parseCookies } from "nookies";
 import { GetServerSideProps } from "next";
 import HeadComponent from "../../components/Head";
@@ -32,7 +32,7 @@ import {
 	getUsersArticles,
 } from "../../store/api/articles";
 import { ToolbarArticles } from "../../components/ToolbarArticles";
-import { SeverityPill } from "../../components/severity-pill";
+import { SeverityPill } from "../../components/DashboardSidebar/severity-pill";
 import { switchColorStatus } from "../../utils/utilsPublications";
 import { Loader } from "../../components/Loader";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";

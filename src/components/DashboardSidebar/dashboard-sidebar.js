@@ -37,20 +37,6 @@ const items = [
 		),
 		title: "Publicações",
 	},
-	// {
-	// 	href: "/articles",
-	// 	icon: (
-	// 		<ArticleIcon fontSize="small" />
-	// 	),
-	// 	title: "Artigos",
-	// },
-	// {
-	// 	href: "/accessControl",
-	// 	icon: (
-	// 		<LockClockIcon fontSize="small" />
-	// 	),
-	// 	title: "Controle de acesso",
-	// },
 ];
 
 export const DashboardSidebar =
@@ -131,13 +117,6 @@ export const DashboardSidebar =
 										color: "#ffffff",
 									}}
 								>
-									{/* <AccountBalanceIcon
-                                    fontSize="large"
-                                    sx={{
-                                      mr: 1,
-                                     transform: 'translateY(5.2px)',
-                                    }}
-                                  /> */}
 									INTERFIN
 								</Typography>
 							</NextLink>
@@ -227,65 +206,7 @@ export const DashboardSidebar =
 							borderColor:
 								"#2D3748",
 						}}
-					/>
-					{/* <Box
-						sx={{
-							px: 2,
-							py: 3,
-						}}
-					>
-						<Typography
-							color="neutral.100"
-							variant="subtitle2"
-						>
-							Novo
-						</Typography>
-						<Typography
-							color="neutral.500"
-							variant="body2"
-						>
-							Novo item em
-							desenvolvimento
-						</Typography>
-						<Box
-							sx={{
-								display:
-									"flex",
-								mt: 2,
-								mx: "auto",
-								width: "160px",
-								"& img":
-									{
-										width: "100%",
-									},
-							}}
-						>
-							<img
-								alt="Go to pro"
-								src="/static/images/sidebar_pro.png"
-							/>
-						</Box>
-						<NextLink
-							href="/"
-							passHref
-						>
-							<Button
-								color="secondary"
-								component="a"
-								endIcon={
-									<OpenInNewIcon />
-								}
-								fullWidth
-								sx={{
-									mt: 2,
-								}}
-								variant="contained"
-							>
-								Em
-								desenvolvimento
-							</Button>
-						</NextLink>
-					</Box> */}
+					/>					
 				</Box>
 			</>
 		);

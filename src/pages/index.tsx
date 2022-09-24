@@ -1,4 +1,4 @@
-import { DashboardLayout } from "../components/dashboard-layout";
+import { DashboardLayout } from "../components/DashboardSidebar/dashboard-layout";
 import { TasksProgress } from "../components/dashboard/tasks-progress";
 import { TotalCustomers } from "../components/dashboard/total-customers";
 import { TotalProfit } from "../components/dashboard/total-profit";

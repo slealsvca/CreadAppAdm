@@ -1,19 +1,7 @@
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 
-// type SeverityPillProps = {
-//   severity: string;
-//   children: React.ReactNode;
-//   color: 'primary'|
-//   'secondary'|
-//   'success'|
-//   'info'|
-//   'warning'|
-//   'analyzing'|
-//   'error'|
-//   'corrections'|
-//   'text',
-// }
+
 
 const SeverityPillRoot = styled("span")(
 	({ theme, ownerState }) => {

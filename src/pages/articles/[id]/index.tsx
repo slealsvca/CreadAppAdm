@@ -21,7 +21,7 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { DashboardLayout } from "../../../components/dashboard-layout";
+import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
 import HeadComponent from "../../../components/Head";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {

@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import { AccountProfile } from "../../components/account/account-profile";
 import { AccountProfileDetails } from "../../components/account/account-profile-details";
-import { DashboardLayout } from "../../components/dashboard-layout";
+import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { parseCookies } from "nookies";
 import { GetServerSideProps } from "next";
 import HeadComponent from "../../components/Head";
