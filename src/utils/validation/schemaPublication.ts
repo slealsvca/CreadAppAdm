@@ -8,6 +8,11 @@ export const SchemaPublication = yup
 			.required(
 				"Titulo obrigatório",
 			),
+		url: yup
+			.string()
+			.required(
+				"Url obrigatório",
+			),
 		resume: yup
 			.string()
 			.required(

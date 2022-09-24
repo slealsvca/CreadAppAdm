@@ -65,6 +65,7 @@ const Customers = () => {
 			isSubmitting,
 		},
 	} = useForm({
+		mode: 'all',
 		resolver: yupResolver(
 			SchemaPublication,
 		),
@@ -271,6 +272,29 @@ const Customers = () => {
 								md={12}
 								xs={12}
 							>
+								<TextField
+									fullWidth
+									label="Url"
+									placeholder="Adicione a url do vídeo"
+									variant="outlined"
+									helperText={
+										errors
+											.url
+											?.message
+									}
+									error={
+										Boolean(errors.url)
+									}
+									{...register(
+										"url",
+									)}
+								/>
+							</Grid>
+							<Grid
+								item
+								md={12}
+								xs={12}
+							>
 								<FormControl
 									fullWidth
 								>
@@ -290,10 +314,7 @@ const Customers = () => {
 												.resume
 												?.message
 										}
-										error={
-											errors.resume !==
-											undefined
-										}
+										error={Boolean(errors.resume)}
 										multiline
 										rows={
 											10

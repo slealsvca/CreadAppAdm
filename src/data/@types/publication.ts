@@ -1,5 +1,6 @@
 export type PublicationType = {
 	title: string;
+	url: string;
 	resume: string;
 	category_id: string;
 	user_id?: string;
