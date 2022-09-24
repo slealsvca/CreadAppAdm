@@ -27,6 +27,6 @@
 		"src/components/dashboard/traffic-by-device.js",
 		"src/components/dashboard/tasks-progress.js",
 		"src/components/dashboard/sales.tsx"
-	],
+, "src/components/DashboardSidebar/dashboard-navbar.js", "src/components/DashboardSidebar/dashboard-navbar.js"	],
 	"exclude": ["node_modules"]
 }

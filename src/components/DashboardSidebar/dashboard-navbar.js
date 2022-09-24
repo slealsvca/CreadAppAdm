@@ -14,9 +14,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { Bell as BellIcon } from "../icons/bell";
-import { UserCircle as UserCircleIcon } from "../icons/user-circle";
-import { Users as UsersIcon } from "../icons/users";
+import { Bell as BellIcon } from "../../icons/bell";
+import { UserCircle as UserCircleIcon } from "../../icons/user-circle";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { destroyCookie } from "nookies";
@@ -108,15 +107,6 @@ export const DashboardNavbar =
 								flexGrow: 1,
 							}}
 						/>
-						{/* <Tooltip title="Contacts">
-							<IconButton
-								sx={{
-									ml: 1,
-								}}
-							>
-								<UsersIcon fontSize="small" />
-							</IconButton>
-						</Tooltip> */}
 						<Tooltip title="Notifications">
 							<IconButton
 								sx={{

@@ -7,19 +7,15 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import {
 	Box,
-	Button,
 	Divider,
 	Drawer,
 	Typography,
 	useMediaQuery,
 } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { ChartBar as ChartBarIcon } from "../icons/chart-bar";
-import { Selector as SelectorIcon } from "../icons/selector";
+import { ChartBar as ChartBarIcon } from "../../icons/chart-bar";
+import { Selector as SelectorIcon } from "../../icons/selector";
 import { NavItem } from "./nav-item";
 import { parseCookies } from "nookies";
-import LockClockIcon from "@mui/icons-material/LockClock";
-import ArticleIcon from "@mui/icons-material/Article";
 import BallotIcon from "@mui/icons-material/Ballot";
 
 const items = [
@@ -102,17 +98,10 @@ export const DashboardSidebar =
 							<NextLink
 								href="/"
 								passHref
-							>
-								{/* <Logo
-                                    sx={{
-                                        height: 42,
-                                        width: 42,
-                                    }}
-                                /> */}
+							>								
 
 								<Typography
 									variant="h4"
-									//textAlign={'center'}
 									sx={{
 										color: "#ffffff",
 									}}
