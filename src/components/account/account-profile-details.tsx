@@ -85,7 +85,6 @@ export const AccountProfileDetails = (
 	};
 
 	useEffect(() => {
-		console.log("user");
 		user &&
 			reset({
 				name: user?.name,

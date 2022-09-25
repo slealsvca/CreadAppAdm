@@ -4,7 +4,7 @@ import {
 	useState,
 } from "react";
 import { ApiService } from "../data/service/Api.Service";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import Router from "next/router";
 import {
 	setCookie,
@@ -42,24 +42,20 @@ export function AuthProvider({
 		//fazer esperar 10 segundos para simular o loading
 		//await new Promise(resolve => setTimeout(resolve, 100000))
 		try {
-			const { data, status } =
-				await ApiService.post(
-					"/sessions",
-					signInData,
-				);
-			if (status === 400) {
-				return data.message;
-			}
+			const user = await axios.post(
+				`${process.env.API_APP_URL}/login`,
+				signInData,
+			)
 
-			if (status === 200) {
-				data &&
+			if (user.status === 200) {
+				user.data &&
 					setUser(
-						data?.token,
+						user.data?.token,
 					);
 				setCookie(
 					undefined,
-					"rica-adm.token",
-					data?.token,
+					"interfin-token",
+					user.data?.access_token,
 					{
 						maxAge:
 							30 *
@@ -71,9 +67,9 @@ export function AuthProvider({
 
 				setCookie(
 					undefined,
-					"rica-adm.user",
+					"interfin-user",
 					JSON.stringify(
-						data?.user,
+						user.data?.user,
 					),
 					{
 						maxAge:
@@ -86,9 +82,9 @@ export function AuthProvider({
 
 				setCookie(
 					undefined,
-					"rica-adm.id",
+					"interfin-id",
 					JSON.stringify(
-						data?.user?.id,
+						user.data?.id,
 					),
 					{
 						maxAge:
@@ -101,19 +97,95 @@ export function AuthProvider({
 
 				ApiService.defaults.headers.common[
 					"Authorization"
-				] = `Bearer ${data?.token}`;
-				Router.push("/");
+				] = `Bearer ${user.data?.token}`;
+				
+				return user
 			}
+
 		} catch (error) {
 			if (
 				error instanceof
 				AxiosError
 			) {
-				return error.response
-					?.data?.message;
+				return error.response?.data;
 			}
 			return "Something went wrong";
+
 		}
+		// } catch (error) {
+		// 	if (
+		// 		error instanceof
+		// 		AxiosError
+		// 	) {
+		// 		return error.response
+		// 			?.data?.message;
+		// 	}
+		// 	return "Something went wrong";
+		// }
+		// const { data, status } =
+		// 	await ApiService.post(
+		// 		"/login",
+		// 		signInData,
+		// 	);
+
+		// if (status === 400) {
+		// 	return data.message;
+		// }
+
+		// if (status === 200) {
+		// 	data &&
+		// 		setUser(
+		// 			data?.token,
+		// 		);
+		// 	setCookie(
+		// 		undefined,
+		// 		"rica-adm.token",
+		// 		data?.token,
+		// 		{
+		// 			maxAge:
+		// 				30 *
+		// 				24 *
+		// 				60 *
+		// 				60, // 30 days
+		// 		},
+		// 	);
+
+		// 	setCookie(
+		// 		undefined,
+		// 		"rica-adm.user",
+		// 		JSON.stringify(
+		// 			data?.user,
+		// 		),
+		// 		{
+		// 			maxAge:
+		// 				30 *
+		// 				24 *
+		// 				60 *
+		// 				60, // 30 days
+		// 		},
+		// 	);
+
+		// 	setCookie(
+		// 		undefined,
+		// 		"rica-adm.id",
+		// 		JSON.stringify(
+		// 			data?.user?.id,
+		// 		),
+		// 		{
+		// 			maxAge:
+		// 				30 *
+		// 				24 *
+		// 				60 *
+		// 				60, // 30 days
+		// 		},
+		// 	);
+
+		// 	ApiService.defaults.headers.common[
+		// 		"Authorization"
+		// 	] = `Bearer ${data?.token}`;
+		// 	Router.push("/");
+		//}
+
 	}
 
 	return (

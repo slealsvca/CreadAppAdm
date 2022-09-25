@@ -14,27 +14,21 @@ import {
 } from "@mui/material";
 import { DashboardLayout } from "../../components/DashboardSidebar/dashboard-layout";
 import { parseCookies } from "nookies";
-import { GetServerSideProps } from "next";
 import HeadComponent from "../../components/Head";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	Controller,
 	useForm,
 } from "react-hook-form";
-import {
-	categorys,
-	initial,
-} from "../../utils/utilsPublications";
-import { SchemaPublication } from "../../utils/validation/schemaPublication";
+
+import { SchemaPublication, initial } from "../../utils/validation/schemaPublication";
 import DropZoneUpload from "../../components/DropZoneUpload";
 import { Loader } from "../../components/Loader";
 import {
-	CategoryType,
 	PublicationType,
 } from "../../data/@types/publication";
 import {
 	createPublication,
-	updatedFile,
 } from "../../store/api/publication";
 import { ModalConfirm } from "../../components/Modal";
 import {
@@ -45,14 +39,15 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { GetCategories } from "../../store/api/articles/categories";
 import { categories } from "../../data/@types/categories";
+import { categorys } from "../../utils/utilsPublications";
 
 const Customers = () => {
-	const [open, setOpen] =
-		useState(false);
-	const { ["rica-adm.id"]: id } =
+	const { "interfin-id": id } =
 		parseCookies();
+	const [open, setOpen] = useState(false);
+
 	const [categories, setCategories] =
-		useState<categories[]>();
+		useState<categories[]>(categorys);
 
 	const {
 		register,
@@ -71,7 +66,6 @@ const Customers = () => {
 		),
 		defaultValues: {
 			...initial,
-			user_id: id || "",
 		},
 	});
 
@@ -81,25 +75,26 @@ const Customers = () => {
 		const response =
 			await createPublication(
 				values,
+				id
 			);
-		if (response?.status === 200) {
+		if (response?.status === 201) {
 			reset();
 			setOpen(!open);
 		}
 	};
 
-	const getCategory = async () => {
-		const categories =
-			await GetCategories();
-		categories &&
-			setCategories(
-				categories?.data,
-			);
-	};
+	// const getCategory = async () => {
+	// 	const categories =
+	// 		await GetCategories();
+	// 	categories &&
+	// 		setCategories(
+	// 			categories?.data,
+	// 		);
+	// };
 
-	useEffect(() => {
-		getCategory();
-	}, []);
+	// useEffect(() => {
+	// 	getCategory();
+	// }, []);
 
 	const handleClose = () =>
 		setOpen(!open);
@@ -164,10 +159,7 @@ const Customers = () => {
 											.title
 											?.message
 									}
-									error={
-										errors.title !==
-										undefined
-									}
+									error={Boolean(errors.title)}
 									{...register(
 										"title",
 									)}
@@ -182,10 +174,7 @@ const Customers = () => {
 									fullWidth
 								>
 									<InputLabel
-										error={
-											errors?.category_id !==
-											undefined
-										}
+										error={Boolean(errors.category)}
 									>
 										Categoria
 									</InputLabel>
@@ -216,10 +205,7 @@ const Customers = () => {
 												inputRef={
 													ref
 												}
-												error={
-													errors?.category_id !==
-													undefined
-												}
+												error={Boolean(errors?.category)}
 											>
 												<MenuItem value="">
 													<em>
@@ -238,29 +224,29 @@ const Customers = () => {
 																key
 															}
 															value={
-																item?.id
+																item?.name
 															}
 														>
 															{
-																item?.name
+																item?.id
 															}
 														</MenuItem>
 													),
 												)}
 											</Select>
 										)}
-										name="category_id"
+										name="category"
 										control={
 											control
 										}
 									/>
-									{errors.category_id && (
+									{errors.category && (
 										<FormHelperText
 											error
 										>
 											{
 												errors
-													.category_id
+													.category
 													?.message
 											}
 										</FormHelperText>
@@ -277,16 +263,12 @@ const Customers = () => {
 									label="Url"
 									placeholder="Adicione a url do vídeo"
 									variant="outlined"
-									helperText={
-										errors
-											.url
-											?.message
-									}
+									helperText={errors.video_url?.message}
 									error={
-										Boolean(errors.url)
+										Boolean(errors.video_url)
 									}
 									{...register(
-										"url",
+										"video_url",
 									)}
 								/>
 							</Grid>
@@ -311,16 +293,16 @@ const Customers = () => {
 										placeholder="Digite um pequeno resumo sobre a publicação"
 										helperText={
 											errors
-												.resume
+												.summary
 												?.message
 										}
-										error={Boolean(errors.resume)}
+										error={Boolean(errors.summary)}
 										multiline
 										rows={
 											10
 										}
 										{...register(
-											"resume",
+											"summary",
 										)}
 										defaultValue="Default Value"
 									/>
@@ -336,10 +318,10 @@ const Customers = () => {
 								>
 									<DropZoneUpload
 										file={watch(
-											"file",
+											"image_url",
 										)}
 										{...register(
-											"file",
+											"image_url",
 										)}
 									/>
 								</FormControl>

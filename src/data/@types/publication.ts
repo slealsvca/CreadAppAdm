@@ -1,10 +1,9 @@
 export type PublicationType = {
 	title: string;
-	url: string;
-	resume: string;
-	category_id: string;
-	user_id?: string;
-	file: any;
+	category: string;
+	summary: string;
+	video_url: string;
+	image_url: string;
 };
 
 export type CategoryType = {

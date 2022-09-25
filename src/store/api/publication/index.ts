@@ -4,33 +4,23 @@ import { ApiService } from "../../../data/service/Api.Service";
 
 export const createPublication = async (
 	obj: PublicationType,
+	user_id: string,
 ) => {
 	//await new Promise(resolve => setTimeout(resolve, 10000));
-	let {
-		title,
-		resume,
-		user_id,
-		category_id,
-		file,
-	} = obj;
-	const body = {
-		title,
-		resume,
-		user_id: parseInt(
-			user_id as string,
-		),
-		category_id: parseInt(
-			category_id,
-		),
-	};
-
+	console.log(parseInt(user_id))
+	console.log(JSON.parse(user_id))
 	try {
 		const response =
 			await ApiService.post(
-				"/articles",
-				body,
+				"/publication",
+				{
+					...obj,
+					user_id: user_id && JSON.parse(user_id),
+					image_url: "ttsefdfdsfd",
+				},
 			);
 		return response;
+
 	} catch (error) {
 		if (
 			error instanceof AxiosError

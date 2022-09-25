@@ -54,7 +54,6 @@ export const deleteArticle = async (
 			await ApiService.delete(
 				`/articles/${id}`,
 			);
-		console.log(response);
 		return response;
 	} catch (error) {
 		if (

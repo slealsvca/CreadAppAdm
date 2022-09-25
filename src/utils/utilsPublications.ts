@@ -1,24 +1,18 @@
 import React from "react";
 import { PublicationType } from "../data/@types/publication";
 
-export const initial: PublicationType =
-	{
-		title: "",
-		resume: "",
-		category_id: "",
-		file: null,
-	};
+
 
 export const categorys = [
-	{ value: "0", label: "Educação" },
-	{ value: "1", label: "Inovação" },
-	{ value: "2", label: "Tecnologia" },
+	{ name: "0", id: "Educação" },
+	{ name: "1", id: "Inovação" },
+	{ name: "2", id: "Tecnologia" },
 	{
-		value: "3",
-		label: "Mudanças Climáticas",
+		name: "3",
+		id: "Mudanças Climáticas",
 	},
-	{ value: "4", label: "Ciência" },
-	{ value: "5", label: "Saúde" },
+	{ name: "4", id: "Ciência" },
+	{ name: "5", id: "Saúde" },
 ];
 
 export const switchColorStatus = (

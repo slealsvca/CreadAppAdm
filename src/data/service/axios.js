@@ -2,7 +2,7 @@ import axios from "axios";
 import { parseCookies } from "nookies";
 
 export function getAPIClient(ctx) {
-	const { "rica-adm.token": token } =
+	const { "interfin-token": token } =
 		parseCookies(ctx);
 
 	const api = axios.create({

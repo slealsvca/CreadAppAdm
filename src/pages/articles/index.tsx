@@ -97,7 +97,6 @@ const Customers = () => {
 			await deleteArticle(
 				articleId,
 			);
-		console.log(response);
 		if (response?.status === 204) {
 			setOpenModal(false);
 			getArticles();

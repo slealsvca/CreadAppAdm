@@ -28,7 +28,6 @@ export const deleteUsers = async (
 			await ApiService.delete(
 				`/users/${id}`,
 			);
-		console.log(response);
 		return response;
 	} catch (error) {
 		if (

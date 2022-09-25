@@ -90,7 +90,6 @@ const AccessControl = () => {
 	const Delete = async () => {
 		const response =
 			await deleteUsers(userId);
-		console.log(response);
 		if (response?.status === 204) {
 			setOpenModal(false);
 			getUsers();

@@ -35,26 +35,7 @@ import HeadComponent from "../../components/Head";
 import GoogleIcon from "@mui/icons-material/Google";
 import Password from "../../components/Password";
 
-function Copyright(props: any) {
-	return (
-		<Typography
-			variant="body2"
-			color="text.secondary"
-			align="center"
-			{...props}
-		>
-			{"Copyright © "}
-			<Link
-				color="inherit"
-				href="*"
-			>
-				INTERFIN
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+
 
 const Auth = () => {
 	const { SignIn } = useContext(
@@ -81,12 +62,16 @@ const Auth = () => {
 		values: SignInData,
 	) => {
 		setIsLoading(true);
-		Router.push("/");
-		// const response = await SignIn(
-		// 	values,
-		// ).finally(() =>
-		// 	setIsLoading(false),
-		// );
+		const response = await SignIn(
+			values,
+		).finally(() =>
+			setIsLoading(false),
+		);
+
+		response?.status === 200 && Router.push("/");
+		
+		response?.internalCode === "ML-000"
+			&& setError("email", { type: 'custom', message: response?.message })
 	};
 
 	return (

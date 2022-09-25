@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { PublicationType } from "../../data/@types/publication";
 
 export const SchemaPublication = yup
 	.object()
@@ -8,22 +9,25 @@ export const SchemaPublication = yup
 			.required(
 				"Titulo obrigatório",
 			),
-		url: yup
-			.string()
-			.required(
-				"Url obrigatório",
-			),
-		resume: yup
+		summary: yup
 			.string()
 			.required(
 				"Resumo obrigatório",
 			),
-		category_id: yup
+		category: yup
 			.string()
 			.required(
 				"Categoria obrigatória",
 			),
-		user_id: yup.string(),
-		file: yup.mixed(),
+		video_url: yup.mixed(),
+		image_url: yup.mixed(),
 	})
 	.required();
+
+export const initial: PublicationType = {
+	title: "",
+	category: "",
+	summary: "",
+	video_url: "",
+	image_url: "",
+};
