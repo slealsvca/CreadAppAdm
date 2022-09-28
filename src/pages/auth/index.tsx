@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 // import { useRouter } from 'next/router';
 // import { useFormik } from 'formik';
 // import * as Yup from 'yup';
@@ -69,7 +71,7 @@ const Auth = () => {
 		);
 
 		response?.status === 200 && Router.push("/");
-		
+
 		response?.internalCode === "ML-000"
 			&& setError("email", { type: 'custom', message: response?.message })
 	};
@@ -79,10 +81,8 @@ const Auth = () => {
 			container
 			component="main"
 			sx={{
-				minHeight: '99vh',
-				backgroundColor: "#d3d3d3"
-				// background:
-				// 	'url("/static/img/bg3.jpg") center top / cover transparent',
+				minHeight: '100vh',
+				backgroundColor: "#f9fafc"
 
 			}}
 		>
@@ -90,66 +90,57 @@ const Auth = () => {
 			{/* <CssBaseline /> */}
 
 			<Grid
-				item
+				container
 				xs={12}
-				sm={12}
-				md={12}
 				component={Paper}
-				elevation={6}
 				square
 				display={'flex'}
 				alignItems={'center'}
-				justifyContent={'center'}
-				sx={{
-					backgroundImage: 'url(/static/img/bg3.jpg)',
-				}}
+				justifyContent={'space-between'}
 			>
 				<Grid
+					item
 					xs={12}
 					sm={12}
 					md={6}
-					sx={{
-						my: 8,
-						mx: 4,
-						display: "flex",
-						flexDirection:
-							"column",
-						borderRadius: '10px',
-						alignItems:
-							"center",
-						border: '1px solid #dbdad9',
-						backgroundColor: 'white',
-						padding: '40px',
-					}}
+					display={'flex'}
+					alignItems={'center'}
+					flexDirection={'column'}
+					justifyContent={'space-between'}
 
 				>
-					<Avatar
-						sx={{
-							m: 1,
-							bgcolor:
-								"secondary.main",
-						}}
-					>
-						<LockOutlinedIcon />
-					</Avatar>
-					<Typography
-						component="h1"
-						variant="h5"
-					>
-						INTERFIN
-					</Typography>
 
-					<Typography
-						color="textSecondary"
-						gutterBottom
-						variant="body2"
-						align="center"
+					<Grid
+						component={Box}
+						xs={11}
+						sm={11}
+						md={9}
+						mb={3}
+						width={'100%'}
 					>
-						Faça login em
-						sua conta
-					</Typography>
+						<Typography
+							component="h1"
+							variant="h4"
+							color={"#121828"}
+						>
+							Bem-vindo
 
-					<Box
+						</Typography>
+
+						<Typography
+							color="textSecondary"
+							gutterBottom
+							variant="body2"
+							mt={2}
+						>
+							Faça entre na plataforma interna
+						</Typography>
+					</Grid>
+
+					<Grid
+						xs={11}
+						sm={11}
+						md={9}
 						component="form"
 						noValidate
 						onSubmit={handleSubmit(
@@ -161,7 +152,6 @@ const Auth = () => {
 							display: "flex",
 							flexDirection: "column",
 							width: "100%",
-							height: "100%",
 						}}
 					>
 						<TextField
@@ -230,16 +220,6 @@ const Auth = () => {
 									senha?
 								</Link>
 							</Grid>
-							{/* <Grid item>
-								<Link
-									href="/register"
-									variant="body2"
-								>
-									{
-										"Inscrever-se"
-									}
-								</Link>
-							</Grid> */}
 						</Grid>
 
 						<Button
@@ -255,7 +235,7 @@ const Auth = () => {
 								isLoading
 							}
 						>
-							Sign In{" "}
+							Log In{" "}
 							{isLoading && (
 								<CircularProgress
 									size={
@@ -268,7 +248,23 @@ const Auth = () => {
 								/>
 							)}
 						</Button>
-					</Box>
+					</Grid>
+				</Grid>
+				<Grid
+					xs={12}
+					sm={12}
+					md={6}
+					sx={{
+						height: "100%",
+						alignItems: 'center',
+						background: 'radial-gradient(50% 50% at 50% 50%, rgb(18, 38, 71) 0%, rgb(9, 14, 35) 100%)',
+						display: 'flex',
+						justifyContent: 'center'
+					}}
+
+				>
+					<img src="/static/svg/illustration.svg" />
+
 				</Grid>
 			</Grid>
 		</Grid>

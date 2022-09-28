@@ -183,7 +183,7 @@ export const theme = createTheme({
 		},
 		divider: "#E6E8F0",
 		primary: {
-			main: "#42AF59",
+			main: "#15B79E",
 			light: "#828DF8",
 			dark: "#177c3e",
 			contrastText: "#FFFFFF",
