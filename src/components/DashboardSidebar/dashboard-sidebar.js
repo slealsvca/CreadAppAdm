@@ -44,7 +44,7 @@ const items = [
 		title: "Categorias",
 	},
 	{
-		href: "",
+		href: "/banners",
 		icon: (
 			<ViewCarouselIcon fontSize="small" />
 		),
