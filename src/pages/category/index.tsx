@@ -51,6 +51,7 @@ import {
 	getUsersArticles,
 } from "../../store/api/articles";
 import { useRouter } from "next/router";
+import { Toolbar } from "../../components/Toolbar";
 
 
 
@@ -187,7 +188,7 @@ const Category = () => {
 						</Grid>
 
 					</Grid>
-					<ToolbarArticles />
+					<Toolbar />
 					<Box sx={{ mt: 3 }}>
 						<Card>
 							<PerfectScrollbar>
