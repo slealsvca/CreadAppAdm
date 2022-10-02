@@ -116,7 +116,7 @@ const CreateBanners = () => {
 								component="h2"
 								gutterBottom
 							>
-								Categorias
+								Banners
 							</Typography>
 						</Box>
 					</Grid>
@@ -191,7 +191,7 @@ const CreateBanners = () => {
 								<FormControl
 									fullWidth
 								>
-									<DropZoneUpload										
+									<DropZoneUpload
 										file={watch(
 											"image_url",
 										)}

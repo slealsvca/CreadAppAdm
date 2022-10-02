@@ -163,7 +163,7 @@ const Banners = () => {
 									component="h2"
 									gutterBottom
 								>
-									Categorias
+									Banners
 								</Typography>
 							</Box>
 						</Grid>
@@ -179,10 +179,10 @@ const Banners = () => {
 								startIcon={
 									<AddCircleOutlineIcon />
 								}
-								onClick={() => router.push(`category/${Math.floor(Date.now() * Math.random()).toString(36)}`)}
+								onClick={() => router.push(`banners/${Math.floor(Date.now() * Math.random()).toString(36)}`)}
 
 							>
-								Criar categoria
+								Criar banner
 							</Button>
 						</Grid>
 
