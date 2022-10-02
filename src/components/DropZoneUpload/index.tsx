@@ -13,7 +13,8 @@ import {
 } from "@mui/material";
 
 interface IProps {
-	name?: string;
+	title?: string;
+	subTitle?: string;
 	file?: any;
 	register?: any;
 	helperText?: string;
@@ -54,7 +55,7 @@ const DropZoneUpload = React.forwardRef<
 				fullWidth
 				variant="contained"
 			>
-				Selecionar vídeo
+				{props?.subTitle || "Selecionar vídeo"}
 			</Button>
 
 			<Box
@@ -95,9 +96,9 @@ const DropZoneUpload = React.forwardRef<
 							opacity: 0,
 							cursor: "pointer",
 							"#fileUpload":
-								{
-									height: "100%",
-								},
+							{
+								height: "100%",
+							},
 						}}
 						{...rest}
 						ref={ref}
@@ -120,7 +121,7 @@ const DropZoneUpload = React.forwardRef<
 								"uppercase",
 						}}
 					>
-						{name}
+						{props?.title || name}
 					</Typography>
 				</Box>
 				<FormHelperText

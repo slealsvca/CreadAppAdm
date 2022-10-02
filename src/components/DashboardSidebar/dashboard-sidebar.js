@@ -5,6 +5,8 @@ import {
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
+import CategoryIcon from '@mui/icons-material/Category';
+
 import {
 	Box,
 	Divider,
@@ -17,6 +19,7 @@ import { Selector as SelectorIcon } from "../../icons/selector";
 import { NavItem } from "./nav-item";
 import { parseCookies } from "nookies";
 import BallotIcon from "@mui/icons-material/Ballot";
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 const items = [
 	{
@@ -32,6 +35,20 @@ const items = [
 			<BallotIcon fontSize="small" />
 		),
 		title: "Publicações",
+	},
+	{
+		href: "/category",
+		icon: (
+			<CategoryIcon fontSize="small" />
+		),
+		title: "Categorias",
+	},
+	{
+		href: "",
+		icon: (
+			<ViewCarouselIcon fontSize="small" />
+		),
+		title: "Banners",
 	},
 ];
 
