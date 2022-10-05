@@ -175,8 +175,8 @@ const Category = () => {
 							justifyContent={"flex-end"}
 						>
 							<Button
-								color="primary"
 								variant="contained"
+								size="small"
 								startIcon={
 									<AddCircleOutlineIcon />
 								}

@@ -24,6 +24,7 @@ import {
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useRouter } from 'next/router'
+import { CategoryCreate } from "../../../store/api/publication/categories";
 
 
 
@@ -50,16 +51,13 @@ const CreateCategory = () => {
 	const onSubmit = async (
 		values: any,
 	) => {
-		console.log("Values: ", values)
-		// const response =
-		// 	await createPublication(
-		// 		values,
-		// 		id
-		// 	);
-		// if (response?.status === 201) {
-		// 	reset();
-		// 	setOpen(!open);
-		// }
+		const response =
+			await CategoryCreate(values);
+
+		if (response?.status === 201) {
+			reset();
+			setOpen(!open);
+		}
 	};
 
 	// const getCategory = async () => {
@@ -99,7 +97,7 @@ const CreateCategory = () => {
 					onSubmit={
 						handleClose
 					}
-					subTitle="Publicação cadastrada com sucesso"
+					subTitle="Categoria cadastrada com sucesso"
 				/>
 				{isSubmitting && (
 					<Loader
@@ -191,7 +189,7 @@ const CreateCategory = () => {
 								<FormControl
 									fullWidth
 								>
-									<DropZoneUpload										
+									<DropZoneUpload
 										file={watch(
 											"image_url",
 										)}

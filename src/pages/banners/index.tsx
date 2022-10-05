@@ -41,7 +41,6 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import moment from "moment";
 
 import { switchColorStatus } from "../../utils/utilsPublications";
-import { ToolbarArticles } from "../../components/ToolbarArticles";
 import { SeverityPill } from "../../components/DashboardSidebar/severity-pill";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
@@ -177,6 +176,7 @@ const Banners = () => {
 							<Button
 								color="primary"
 								variant="contained"
+								size="small"
 								startIcon={
 									<AddCircleOutlineIcon />
 								}

@@ -37,7 +37,7 @@ import {
 } from "react";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { GetCategories } from "../../store/api/articles/categories";
+import { GetCategories } from "../../store/api/publication/categories";
 import { categories } from "../../data/@types/categories";
 import { categorys } from "../../utils/utilsPublications";
 

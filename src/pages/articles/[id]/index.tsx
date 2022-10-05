@@ -55,7 +55,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { Link } from "../../../components/Navigation/Link";
 import { Alerts } from "../../../components/Alert";
-import { GetCategories } from "../../../store/api/articles/categories";
+import { GetCategories } from "../../../store/api/publication/categories";
 import { categories } from "../../../data/@types/categories";
 
 const EditUser: NextPage = () => {
