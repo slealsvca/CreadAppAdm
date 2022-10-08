@@ -226,6 +226,7 @@ export const DashboardSidebar =
 						sx: {
 							backgroundColor:
 								"neutral.900",
+							//backgroundImage: 'url(https://gerministore.blob.core.windows.net/images/4effb1ce-8a3d-41c8-9196-86f5a308b3e9.jpg)',
 							color: "#FFFFFF",
 							width: 280,
 						},

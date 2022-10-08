@@ -101,8 +101,8 @@ const CreateCategory = () => {
 						}
 					/>
 				)}
-				<Grid xs={12} container>
-					<Grid item xs={12} md={8}>
+				<Grid xs={12} container marginBottom={1}>
+					<Grid item xs={12} md={8} >
 						<Box>
 							<Typography
 								variant="h5"
@@ -119,13 +119,15 @@ const CreateCategory = () => {
 						gap={2}
 						xs={12}
 						display="flex"
+						justifyContent={"flex-end"}
 					>
 						<Button
-							fullWidth
+							//fullWidth
+							size="small"
 							color="primary"
 							variant="outlined"
 							startIcon={
-								<HighlightOffIcon />
+								<HighlightOffIcon  fontSize="small"/>
 							}
 							onClick={() => {
 								router.back()
@@ -134,11 +136,12 @@ const CreateCategory = () => {
 							Voltar
 						</Button>
 						<Button
-							fullWidth
+							size="small"
+							//fullWidth
 							color="primary"
 							variant="contained"
 							startIcon={
-								<AddCircleOutlineIcon />
+								<AddCircleOutlineIcon  fontSize="small"/>
 							}
 							type="submit"
 						>

@@ -130,7 +130,7 @@ const Category = () => {
 	};
 	return (
 		<DashboardLayout>
-			<HeadComponent title="Articles" />
+			<HeadComponent title="Categorias" />
 			<Loader loading={loading} />
 			<FormModal
 				open={openModal}
@@ -184,7 +184,7 @@ const Category = () => {
 								variant="contained"
 								size="small"
 								startIcon={
-									<AddCircleOutlineIcon />
+									<AddCircleOutlineIcon  fontSize="small"/>
 								}
 								onClick={() => router.push(`category/${Math.floor(Date.now() * Math.random()).toString(36)}`)}
 
