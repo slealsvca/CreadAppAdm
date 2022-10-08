@@ -2,6 +2,7 @@ export type PublicationType = {
 	title: string;
 	category: string;
 	summary: string;
+	status?: string;
 	video_url: string;
 	image_url: string;
 };

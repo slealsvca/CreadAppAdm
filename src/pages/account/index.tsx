@@ -107,3 +107,23 @@ const Account = () => {
 export default Account;
 
 
+export const getServerSideProps: GetServerSideProps = async ctx => {
+	const {
+		["interfin-token"]: token,
+	} = parseCookies(ctx);
+
+	if (!token) {
+		return {
+			redirect: {
+				destination:
+					"/auth",
+				permanent: false,
+			},
+		};
+	}
+	return {
+		props: {},
+	};
+};
+
+

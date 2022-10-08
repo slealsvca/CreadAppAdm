@@ -41,22 +41,28 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import moment from "moment";
 
 import { switchColorStatus } from "../../utils/utilsPublications";
-import { ToolbarArticles } from "../../components/ToolbarArticles";
 import { SeverityPill } from "../../components/DashboardSidebar/severity-pill";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import { GetCategory } from "../../store/api/publication/categories";
 
 
 import {
 	deleteArticle,
-	getUsersArticles,
 } from "../../store/api/articles";
 import { useRouter } from "next/router";
 import { Toolbar } from "../../components/Toolbar";
+import { Category } from "../../data/@types/category";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 
 
 const Category = () => {
 	const router = useRouter();
+
+	const [categories, setCategories] =
+		useState<Category[]>([]);
+
 	const [openModal, setOpenModal] =
 		useState<boolean>(false);
 	const [articleId, setArticleId] =
@@ -93,34 +99,34 @@ const Category = () => {
 		setPage(0);
 	};
 
-	const getArticles = async () => {
-		setLoading(true);
-		const articles =
-			await getUsersArticles().finally(
-				() => setLoading(false),
+
+	const getCategory = async () => {
+		const categories =
+			await GetCategory();
+		categories &&
+			setCategories(
+				categories?.data,
 			);
-		articles.length > 0 &&
-			setArticles(articles);
 	};
 
 	useEffect(() => {
-		//getArticles();
+		getCategory();
 	}, []);
 
 	const Delete = async () => {
-		const response =
-			await deleteArticle(
-				articleId,
-			);
-		if (response?.status === 204) {
-			setOpenModal(false);
-			getArticles();
-			setOpen(true);
-			setAlertTxt(
-				"Artigo deletado com sucesso!",
-			);
-			setAlertType("success");
-		}
+		// const response =
+		// 	await deleteArticle(
+		// 		articleId,
+		// 	);
+		// if (response?.status === 204) {
+		// 	setOpenModal(false);
+		// 	getArticles();
+		// 	setOpen(true);
+		// 	setAlertTxt(
+		// 		"Artigo deletado com sucesso!",
+		// 	);
+		// 	setAlertType("success");
+		// }
 	};
 	return (
 		<DashboardLayout>
@@ -186,7 +192,6 @@ const Category = () => {
 								Criar categoria
 							</Button>
 						</Grid>
-
 					</Grid>
 					<Toolbar />
 					<Box sx={{ mt: 3 }}>
@@ -243,10 +248,10 @@ const Category = () => {
 											</TableRow>
 										</TableHead>
 										<TableBody>
-											{articles.length >
+											{categories.length >
 												0 ? (
-												articles
-													.slice(
+												categories
+													?.slice(
 														page *
 														rowsPerPage,
 														page *
@@ -255,7 +260,7 @@ const Category = () => {
 													)
 													.map(
 														(
-															article: articleType,
+															category: Category,
 															key: number,
 														) => (
 															<TableRow
@@ -270,43 +275,29 @@ const Category = () => {
 																		variant="body1"
 																	>
 																		{
-																			article?.title
+																			category?.name
 																		}
 																	</Typography>
 																</TableCell>
 																<TableCell>
-																	{article?.category ??
-																		"Não definido"}
-																</TableCell>
-																<TableCell>
-																	{article?.resume?.slice(
-																		0,
-																		90,
-																	)}
-																	{article
-																		?.resume
-																		?.length >
-																		90 &&
-																		"..."}
-																</TableCell>
-																<TableCell>
 																	<SeverityPill
 																		color={switchColorStatus(
-																			article?.status,
+																			category?.status as string,
 																		)}
 																	>
 																		{
-																			article?.status
+																			category?.status
 																		}
 																	</SeverityPill>
 																</TableCell>
 																<TableCell>
-																	{article?.created_at &&
+																	{/* {category?.image_url &&
 																		moment(
-																			article?.created_at,
+																			category?.created_at,
 																		).format(
 																			"DD/MM/YYYY HH:mm",
-																		)}
+																		)} */}
+																	{category?.image}
 																</TableCell>
 																<TableCell
 																	size="small"
@@ -327,12 +318,12 @@ const Category = () => {
 																			<IconButton
 																				color="primary"
 																				disabled={Boolean(
-																					article?.status ===
+																					category?.status ===
 																					"rejected",
 																				)}
 																			>
 																				<Link
-																					href={`/articles/${article?.id}`}
+																					href={`/articles/${category?.id}`}
 																					color="primary"
 																					size="small"
 																				>
@@ -351,7 +342,7 @@ const Category = () => {
 																						true,
 																					);
 																					setArticleId(
-																						article?.id,
+																						category.id as string,
 																					);
 																				}}
 																			>
@@ -433,5 +424,25 @@ const Category = () => {
 };
 
 export default Category;
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+	const {
+		["interfin-token"]: token,
+	} = parseCookies(ctx);
+
+	if (!token) {
+		return {
+			redirect: {
+				destination:
+					"/auth",
+				permanent: false,
+			},
+		};
+	}
+	return {
+		props: {},
+	};
+};
+
 
 

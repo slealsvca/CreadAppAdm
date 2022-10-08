@@ -23,6 +23,7 @@ import { destroyCookie } from "nookies";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
+import { ApiService } from "../../data/service/Api.Service";
 
 const DashboardNavbarRoot = styled(
 	AppBar,
@@ -208,8 +209,11 @@ export const DashboardNavbar =
 									onClick={() => {
 										destroyCookie(
 											null,
-											"rica-adm.token",
+											"interfin-token",
 										);
+										ApiService.defaults.headers.common[
+											"Authorization"
+										] = ``;
 										router.push(
 											"/auth",
 										);

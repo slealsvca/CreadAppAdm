@@ -25,6 +25,8 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useRouter } from 'next/router'
 import { CategoryCreate } from "../../../store/api/publication/categories";
+import { schemaCategory, initial } from "../../../utils/validation/schemaCategory";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 
 
@@ -33,6 +35,8 @@ const CreateCategory = () => {
 		parseCookies();
 	const [open, setOpen] = useState(false);
 	const router = useRouter()
+
+
 
 	const {
 		register,
@@ -45,7 +49,11 @@ const CreateCategory = () => {
 		},
 	} = useForm({
 		mode: 'all',
-		defaultValues: { title: '', image_url: '' }
+		resolver: yupResolver(
+			schemaCategory,
+		),
+		defaultValues: initial
+
 	});
 
 	const onSubmit = async (
@@ -58,20 +66,7 @@ const CreateCategory = () => {
 			reset();
 			setOpen(!open);
 		}
-	};
-
-	// const getCategory = async () => {
-	// 	const categories =
-	// 		await GetCategories();
-	// 	categories &&
-	// 		setCategories(
-	// 			categories?.data,
-	// 		);
-	// };
-
-	// useEffect(() => {
-	// 	getCategory();
-	// }, []);
+	};	
 
 	const handleClose = () =>
 		setOpen(!open);
@@ -171,12 +166,12 @@ const CreateCategory = () => {
 									variant="outlined"
 									helperText={
 										errors
-											.title
+											.name
 											?.message
 									}
-									error={Boolean(errors.title)}
+									error={Boolean(errors.name)}
 									{...register(
-										"title",
+										"name",
 									)}
 								/>
 							</Grid>
@@ -191,10 +186,10 @@ const CreateCategory = () => {
 								>
 									<DropZoneUpload
 										file={watch(
-											"image_url",
+											"image",
 										)}
 										{...register(
-											"image_url",
+											"image",
 										)}
 										title="Arraste e solte um arquivo ou selecione uma imagem"
 										subTitle="Selecionar imagem"

@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HeadComponent from "../../components/Head";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 
 const NotFound = () => (
 	<>
@@ -77,3 +79,23 @@ const NotFound = () => (
 );
 
 export default NotFound;
+
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+	const {
+		["interfin-token"]: token,
+	} = parseCookies(ctx);
+
+	if (!token) {
+		return {
+			redirect: {
+				destination:
+					"/auth",
+				permanent: false,
+			},
+		};
+	}
+	return {
+		props: {},
+	};
+};

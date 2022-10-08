@@ -7,8 +7,6 @@ export const createPublication = async (
 	user_id: string,
 ) => {
 	//await new Promise(resolve => setTimeout(resolve, 10000));
-	console.log(parseInt(user_id))
-	console.log(JSON.parse(user_id))
 	try {
 		const response =
 			await ApiService.post(
@@ -52,3 +50,17 @@ export const updatedFile = async (
 		throw error;
 	}
 };
+
+export const getAllPublications = async () => {
+	try {
+		return await ApiService.get("/publication");
+	} catch (error) {
+		if (
+			error instanceof AxiosError
+		) {
+			return error.response?.data
+				?.message;
+		}
+		return "Something went wrong";
+	}
+}

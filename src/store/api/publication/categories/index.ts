@@ -1,12 +1,13 @@
 import { ApiService } from "../../../../data/service/Api.Service";
 import { AxiosError } from "axios";
+import { Category } from "../../../../data/@types/category";
 
-export const GetCategories =
+export const GetCategory =
 	async () => {
 		try {
 			const res =
 				await ApiService.get(
-					"categories",
+					"category",
 				);
 			return res;
 		} catch (error) {
@@ -20,13 +21,10 @@ export const GetCategories =
 	};
 
 export const CategoryCreate =
-	async (body: { title: '', image_url: '' }) => {
+	async (body: Category) => {
 		try {
 			const res =
-				await ApiService.post("category", {
-					name: "Choque",
-					"image": "2.211083221.1576170408.1664742113-772955760.1664742113"
-				});
+				await ApiService.post("category", body);
 			return res;
 		} catch (error) {
 			if (
