@@ -94,7 +94,7 @@ const Publications = () => {
 		console.log(publication)
 		if (publication) {
 			const { data } = publication
-			setPublications(data.content);
+			setPublications(data?.content);
 		}
 	};
 

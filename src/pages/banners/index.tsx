@@ -174,6 +174,7 @@ const Banners = () => {
 							md={2}
 							display="flex"
 							justifyContent={"flex-end"}
+							height={40}
 						>
 							<Button
 								color="primary"

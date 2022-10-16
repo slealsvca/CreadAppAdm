@@ -14,7 +14,7 @@ export const createPublication = async (
 				{
 					...obj,
 					user_id: user_id && JSON.parse(user_id),
-					image_url: "ttsefdfdsfd",
+					image_url: "/static/images/avatars/avatar_11.png",
 				},
 			);
 		return response;

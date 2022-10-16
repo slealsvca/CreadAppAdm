@@ -108,7 +108,12 @@ const CreateBanners = () => {
 						}
 					/>
 				)}
-				<Grid xs={12} container>
+				<Grid
+					xs={12}
+					container
+					display="flex"
+					justifyContent={"space-between"}
+				>
 					<Grid item xs={12} md={8}>
 						<Box>
 							<Typography
@@ -122,10 +127,11 @@ const CreateBanners = () => {
 					</Grid>
 					<Grid
 						item
-						md={4}
+						md={3}
 						gap={2}
 						xs={12}
 						display="flex"
+						height={40}
 					>
 						<Button
 							fullWidth
