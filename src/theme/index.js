@@ -239,6 +239,12 @@ export const theme = createTheme({
 				"rgba(55, 65, 81, 0.48)",
 			widget: "#FFFFFF",
 		},
+		border: {
+			main: "#eaecf0",
+			primary: "#c2c2c3",
+			secondary: "#a3a3a6",
+			widget: "#FFFFFF",
+		},
 	},
 	shape: {
 		borderRadius: 8,

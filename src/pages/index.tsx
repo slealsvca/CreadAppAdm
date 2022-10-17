@@ -16,6 +16,7 @@ import { LatestProducts } from "../components/dashboard/latest-products";
 import { LatestOrders } from "../components/dashboard/latest-orders";
 import { parseCookies } from "nookies";
 import { AllNotifications } from "../components/AllNotifications";
+import { Welcome } from "../components/Welcome";
 
 const Home: NextPage = () => {
 	return (
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
 				>
 					<Grid
 						container
-						spacing={1}
+						spacing={2}
 					>
 						<Grid
 							item
@@ -47,7 +48,10 @@ const Home: NextPage = () => {
 							sm={6}
 							xs={12}
 						>
-							<AllNotifications />
+							<Welcome />
+						</Grid>
+						<Grid item xs={12}>
+							<Sales />
 						</Grid>
 					</Grid>
 				</Container>

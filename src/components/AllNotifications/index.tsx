@@ -1,87 +1,114 @@
 import {
-	Avatar,
 	Box,
-	Card,
-	CardContent,
-	FormControl,
+	// FormControl,
 	Grid,
-	InputLabel,
-	MenuItem,
-	Select,
+	// MenuItem,
+	// Select,
+	Button,
 	Typography,
 } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import AllInboxIcon from '@mui/icons-material/AllInbox';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import PeopleIcon from "@mui/icons-material/PeopleOutlined";
-import { Fragment } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 const notifications = [
 	"3 artigos pendentes precisam de sua atenção.",
 	"1 notas da equipe no Natalie Rusell.",
-	"3 pedidos pendentes precisam de sua atenção."
+	"3 pedidos pendentes precisam de sua atenção.",
+	"1 notas da equipe no Natalie Rusell.",
 ]
-export const AllNotifications = (
-	props: any,
-) => (
-	<Card {...props}>
-		<CardContent sx={{ padding: '0px 0px' }}>
-			<Grid
-				container
-				//spacing={3}
+
+export const AllNotifications = (props: any) => (
+	<Box border={'1px solid rgb(234, 236, 240)'} pt={1}>
+		<Grid
+			container
+			sx={{
+				justifyContent: "space-between",
+				alignItems: 'center',
+				padding: '0px 20px',
+				pb: 1,
+				borderBottom: '1px solid rgb(234, 236, 240)',
+
+			}}
+		>
+			<Grid item >
+				<Typography
+					color="neutral.900"
+					fontWeight={600}
+					gutterBottom
+					variant="subtitle1"
+				>
+					Notifications
+				</Typography>
+			</Grid>
+			<Grid item>
+				<Button
+					endIcon={
+						<ArrowDropDownIcon fontSize="small" />
+					}
+					size="small"
+				>
+					Últimos 7 dias
+				</Button>
+				{/* <FormControl fullWidth size="small">
+					<InputLabel id="demo-simple-select-label">Age</InputLabel>
+					<Select
+						labelId="demo-simple-select-label"
+						label="Age"
+						defaultValue={10}
+					>
+						<MenuItem
+							value={10}
+							color="success"
+							sx={{ color: 'success' }}
+						>
+							Últimos 7 dias
+						</MenuItem>
+					</Select>
+				</FormControl> */}
+			</Grid>
+		</Grid>
+		{notifications.map((item, key: number) =>
+			<Box
 				sx={{
-					justifyContent:
-						"space-between",
-					alignItems: 'center',
+					alignItems:
+						"center",
+					display: "flex",
+					justifyContent: 'space-between',
 					padding: '10px 20px',
-					border: '1px solid rgb(234, 236, 240)'
+					borderBottom: '1px solid rgb(234, 236, 240)',
+
+				}}
+				key={key}>
+				<Box display={"flex"} gap={1} >
+					<AllInboxIcon sx={{ color: "action.active" }} />
+					<Typography
+						variant="body2"
+					>
+						{item}
+					</Typography>
+				</Box>
+				<ArrowForwardIcon sx={{ color: "action.active" }} />
+			</Box>
+		)}
+		<Box
+			display={"flex"}
+			alignItems={"center"}
+			pt={1}
+			border={'1px solid rgb(234, 236, 240)'}
+		>
+			<Typography
+				variant="body1"
+				sx={{
+					mr: 1,
+					padding: '10px 20px',
+					color: "primary.main",
 				}}
 			>
-				<Grid item >
-					<Typography
-						color="textSecondary"
-						gutterBottom
-						variant="overline"
-					>
-						Notifications
-					</Typography>
-				</Grid>
-				<Grid item>
-					<FormControl fullWidth size="small">
-						{/* <InputLabel id="demo-simple-select-label">Age</InputLabel> */}
-						<Select
-							// labelId="demo-simple-select-label"
-							// label="Age"
-							defaultValue={10}
-						>
-							<MenuItem value={10}>Mês passado</MenuItem>
-						</Select>
-					</FormControl>
-				</Grid>
-			</Grid>
-			{notifications.map((item, key: number) =>
-				<Box
-					sx={{
-						alignItems:
-							"center",
-						display: "flex",
-						justifyContent: 'space-between',
-						padding: '10px 20px',
-					}}
-					key={key}>
-					<Box display={"flex"} gap={1} >
-						<AllInboxIcon color="success" />
-						<Typography
-							variant="body2"
-							sx={{
-								mr: 1,
-							}}
-						>
-							{item}
-						</Typography>
-					</Box>
-					<ArrowForwardIcon color="success" />
-				</Box>
-			)}
-		</CardContent>
-	</Card>
+				Ver todas as notificações
+			</Typography>
+			<ArrowForwardIcon sx={{ color: "primary.main" }} />
+		</Box>
+
+	</Box>
 );
