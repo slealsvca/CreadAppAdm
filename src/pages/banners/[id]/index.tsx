@@ -50,7 +50,6 @@ const CreateBanners = () => {
 	const onSubmit = async (
 		values: any,
 	) => {
-		console.log("Values: ", values)
 		// const response =
 		// 	await createPublication(
 		// 		values,

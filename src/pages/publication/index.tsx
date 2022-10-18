@@ -69,12 +69,7 @@ const Publications = () => {
 		setRowsPerPage,
 	] = useState(10);
 
-	const handleChangePage = (
-		event: unknown,
-		newPage: number,
-	) => {
-		setPage(newPage);
-	};
+	const handleChangePage = (event: unknown, newPage: number ) => setPage(newPage);
 
 	const handleChangeRowsPerPage = (
 		event: React.ChangeEvent<HTMLInputElement>,
@@ -87,26 +82,17 @@ const Publications = () => {
 
 	const getArticles = async () => {
 		setLoading(true);
-		const publication =
-			await getAllPublications().finally(
-				() => setLoading(false),
-			);
-		console.log(publication)
+		const publication = await getAllPublications().finally(() => setLoading(false));
 		if (publication) {
 			const { data } = publication
 			setPublications(data?.content);
 		}
 	};
 
-	useEffect(() => {
-		getArticles();
-	}, []);
+	useEffect(() => { getArticles(); }, []);
 
 	const Delete = async () => {
-		const response =
-			await deleteArticle(
-				articleId,
-			);
+		const response = await deleteArticle(articleId);
 		if (response?.status === 204) {
 			setOpenModal(false);
 			getArticles();

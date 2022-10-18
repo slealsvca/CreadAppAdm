@@ -101,12 +101,8 @@ const Category = () => {
 
 
 	const getCategory = async () => {
-		const categories =
-			await GetCategory();
-		categories &&
-			setCategories(
-				categories?.data,
-			);
+		const categories = await GetCategory();
+		categories && setCategories(categories?.data.content);
 	};
 
 	useEffect(() => {
@@ -184,7 +180,7 @@ const Category = () => {
 								variant="contained"
 								size="small"
 								startIcon={
-									<AddCircleOutlineIcon  fontSize="small"/>
+									<AddCircleOutlineIcon fontSize="small" />
 								}
 								onClick={() => router.push(`category/${Math.floor(Date.now() * Math.random()).toString(36)}`)}
 

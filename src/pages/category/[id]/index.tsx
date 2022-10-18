@@ -27,6 +27,7 @@ import { useRouter } from 'next/router'
 import { CategoryCreate } from "../../../store/api/publication/categories";
 import { schemaCategory, initial } from "../../../utils/validation/schemaCategory";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Category } from "../../../data/@types/category";
 
 
 
@@ -57,10 +58,13 @@ const CreateCategory = () => {
 	});
 
 	const onSubmit = async (
-		values: any,
+		values: Category,
 	) => {
 		const response =
-			await CategoryCreate(values);
+			await CategoryCreate({
+				name: values.name,
+				image: "/static/images/avatars/avatar_11.png",
+			});
 
 		if (response?.status === 201) {
 			reset();

@@ -15,5 +15,5 @@ export const schemaCategory = yup
 
 export const initial: Category = {
 	name: "",
-	image: "",
+	image: "/static/images/avatars/avatar_11.png",
 };
