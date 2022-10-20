@@ -43,13 +43,13 @@ const items = [
 		),
 		title: "Categorias",
 	},
-	{
-		href: "/banners",
-		icon: (
-			<ViewCarouselIcon fontSize="small" />
-		),
-		title: "Banners",
-	},
+	// {
+	// 	href: "/banners",
+	// 	icon: (
+	// 		<ViewCarouselIcon fontSize="small" />
+	// 	),
+	// 	title: "Banners",
+	// },
 ];
 
 export const DashboardSidebar =

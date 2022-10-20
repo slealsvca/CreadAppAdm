@@ -14,7 +14,7 @@ export const createPublication = async (
 				{
 					...obj,
 					user_id: user_id && JSON.parse(user_id),
-					image_url: "/static/images/avatars/avatar_11.png",
+					image_url: "https://f.i.uol.com.br/fotografia/2022/10/18/1666091582634e8a3e8ddcf_1666091582_3x2_lg.jpg",
 				},
 			);
 		return response;

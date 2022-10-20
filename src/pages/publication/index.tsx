@@ -69,7 +69,7 @@ const Publications = () => {
 		setRowsPerPage,
 	] = useState(10);
 
-	const handleChangePage = (event: unknown, newPage: number ) => setPage(newPage);
+	const handleChangePage = (event: unknown, newPage: number) => setPage(newPage);
 
 	const handleChangeRowsPerPage = (
 		event: React.ChangeEvent<HTMLInputElement>,
@@ -182,66 +182,38 @@ const Publications = () => {
 									<Table>
 										<TableHead sx={{ backgroundColor: "primary.main", }} >
 											<TableRow>
-												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
-												>
+												<TableCell >
 													Title
 												</TableCell>
-												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
-												>
-													Categoria
-												</TableCell>
-												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
-												>
+												<TableCell >
 													Resumo
 												</TableCell>
-												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
-												>
+												<TableCell>
+													Data de criação
+												</TableCell>
+												<TableCell >
 													Status
 												</TableCell>
-												{/*<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
-												>
-													Data
-													de
-													criação
-												</TableCell> */}
-												<TableCell
-													sx={{
-														width: "4%",
-														pl: "27px",
-														color: "#ffffff !important",
-													}}
-												>
+												<TableCell >
+													Categoria
+												</TableCell>
+												<TableCell sx={{ width: "4%", pl: "27px", }} >
 													Ações
 												</TableCell>
 											</TableRow>
 										</TableHead>
 										<TableBody>
-											{publications.length >
+											{publications?.length >
 												0 ? (
 												publications
-													.slice(
+													?.slice(
 														page *
 														rowsPerPage,
 														page *
 														rowsPerPage +
 														rowsPerPage,
 													)
-													.map(
+													?.map(
 														(
 															article: PublicationType,
 															key: number,
@@ -263,10 +235,6 @@ const Publications = () => {
 																	</Typography>
 																</TableCell>
 																<TableCell>
-																	{article?.category ??
-																		"Não definido"}
-																</TableCell>
-																<TableCell>
 																	{article?.summary?.slice(
 																		0,
 																		90,
@@ -276,6 +244,14 @@ const Publications = () => {
 																		?.length >
 																		90 &&
 																		"..."}
+																</TableCell>
+																<TableCell>
+																	{article?.createdAt &&
+																		moment(
+																			article?.createdAt,
+																		).format(
+																			"DD/MM/YYYY HH:mm",
+																		)}
 																</TableCell>
 																<TableCell>
 																	<SeverityPill
@@ -288,14 +264,10 @@ const Publications = () => {
 																		}
 																	</SeverityPill>
 																</TableCell>
-																{/* <TableCell>
-																	{article?.created_at &&
-																		moment(
-																			article?.created_at,
-																		).format(
-																			"DD/MM/YYYY HH:mm",
-																		)}
-																</TableCell> */}
+																<TableCell>
+																	{article?.category ??
+																		"Não definido"}
+																</TableCell>
 																<TableCell
 																	size="small"
 																	sx={{

@@ -21,7 +21,8 @@ export const theme = createTheme({
 						"none",
 				},
 				sizeSmall: {
-					padding: "6px 16px",
+					padding: "6px 15px",
+					height: "38px"
 				},
 				sizeMedium: {
 					padding: "8px 20px",
@@ -50,11 +51,9 @@ export const theme = createTheme({
 		MuiCardContent: {
 			styleOverrides: {
 				root: {
-					padding:
-						"32px 24px",
+					padding: "32px 24px",
 					"&:last-child": {
-						paddingBottom:
-							"32px",
+						paddingBottom: "32px",
 					},
 				},
 			},
@@ -125,20 +124,18 @@ export const theme = createTheme({
 		MuiTableHead: {
 			styleOverrides: {
 				root: {
-					backgroundColor:
-						"#F3F4F6",
+					backgroundColor: "#F3F4F6",
+					
 					".MuiTableCell-root":
 						{
-							color: "#374151",
+							//color: "#374151",
+							color: "#ffffff",
 						},
-					borderBottom:
-						"none",
+					borderBottom: "none",
 					"& .MuiTableCell-root":
 						{
-							borderBottom:
-								"none",
-							fontSize:
-								"12px",
+							borderBottom: "none",
+							fontSize: "12px",
 							fontWeight: 600,
 							lineHeight: 1,
 							letterSpacing: 0.5,

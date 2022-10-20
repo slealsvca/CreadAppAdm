@@ -34,17 +34,18 @@ import { ModalConfirm } from "../../../components/Modal";
 import {
 	useState,
 } from "react";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import FileDownloadDoneIcon from '@mui/icons-material/FileDownloadDone';
 import { categories } from "../../../data/@types/categories";
 import { categorys } from "../../../utils/utilsPublications";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 const Customers = () => {
 	const { "interfin-id": id } =
 		parseCookies();
 	const [open, setOpen] = useState(false);
-
+	const router = useRouter();
 	const [categories, setCategories] =
 		useState<categories[]>(categorys);
 
@@ -128,7 +129,11 @@ const Customers = () => {
 						}
 					/>
 				)}
-				<Box>
+				<Box
+					display="flex"
+					justifyContent="space-between"
+					alignItems="center"
+				>
 					<Typography
 						variant="h5"
 						component="h2"
@@ -136,6 +141,38 @@ const Customers = () => {
 					>
 						Publicações
 					</Typography>
+					<Box
+						display="flex"
+						justifyContent="center"
+						alignItems="center"
+						gap={2}
+					>
+						<Button
+							size="small"
+							color="primary"
+							variant="outlined"
+							startIcon={
+								<ArrowBackIcon />
+							}
+							onClick={() => {
+								router.back()
+							}}
+						>
+							Voltar
+						</Button>
+						<Button
+							size="small"
+							color="primary"
+							variant="contained"
+							startIcon={
+								<FileDownloadDoneIcon />
+							}
+							type="submit"
+						>
+							Publicar
+							artigo
+						</Button>
+					</Box>
 				</Box>
 
 				<Card sx={{ mb: 3 }}>
@@ -327,46 +364,6 @@ const Customers = () => {
 							</Grid>
 						</Grid>
 					</CardContent>
-				</Card>
-				<Card
-					sx={{
-						p: 3,
-					}}
-				>
-					<Box
-						display="flex"
-						justifyContent="center"
-						alignItems="center"
-						gap={5}
-						p={3}
-					>
-						<Button
-							fullWidth
-							color="primary"
-							variant="outlined"
-							startIcon={
-								<HighlightOffIcon />
-							}
-							onClick={() => {
-								reset();
-							}}
-						>
-							Limpar
-							campos
-						</Button>
-						<Button
-							fullWidth
-							color="primary"
-							variant="contained"
-							startIcon={
-								<AddCircleOutlineIcon />
-							}
-							type="submit"
-						>
-							Publicar
-							artigo
-						</Button>
-					</Box>
 				</Card>
 			</Box>
 		</DashboardLayout>

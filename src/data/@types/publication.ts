@@ -1,6 +1,7 @@
 export type PublicationType = {
 	title: string;
 	category: string;
+	createdAt?: string;
 	summary: string;
 	status?: string;
 	video_url: string;
