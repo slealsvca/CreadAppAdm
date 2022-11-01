@@ -170,6 +170,7 @@ const CreateCategory = () => {
 								<TextField
 									fullWidth
 									label="Título"
+									size="small"
 									variant="outlined"
 									helperText={
 										errors

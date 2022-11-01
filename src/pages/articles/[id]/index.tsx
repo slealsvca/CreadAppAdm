@@ -50,12 +50,11 @@ import {
 	getArticleById,
 	updatedArticle,
 } from "../../../store/api/articles";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { GetCategory } from "../../../store/api/publication/categories";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import { Link } from "../../../components/Navigation/Link";
 import { Alerts } from "../../../components/Alert";
-import { GetCategories } from "../../../store/api/publication/categories";
 import { categories } from "../../../data/@types/categories";
 
 const EditUser: NextPage = () => {
@@ -131,12 +130,8 @@ const EditUser: NextPage = () => {
 	};
 
 	const getCategory = async () => {
-		const categories =
-			await GetCategories();
-		categories &&
-			setCategories(
-				categories?.data,
-			);
+		const categories = await GetCategory();
+		categories && setCategories(categories?.data);
 	};
 
 	const Download = async (
@@ -272,11 +267,7 @@ const EditUser: NextPage = () => {
 											size="small"
 											label="Título"
 											variant="outlined"
-											helperText={
-												errors
-													.title
-													?.message
-											}
+											helperText={`${errors.title?.message}`}
 											error={
 												errors.title !==
 												undefined
@@ -380,11 +371,7 @@ const EditUser: NextPage = () => {
 										<FormHelperText
 											error
 										>
-											{
-												errors
-													.category_id
-													?.message
-											}
+											{`${errors.category_id.message}`}
 										</FormHelperText>
 									)}
 								</FormControl>
@@ -426,11 +413,7 @@ const EditUser: NextPage = () => {
 												size="small"
 												fullWidth
 												placeholder="Digite um pequeno resumo sobre a publicação"
-												helperText={
-													errors
-														.resume
-														?.message
-												}
+												helperText={`${errors.resume?.message}`}
 												error={
 													errors.resume !==
 													undefined
@@ -487,7 +470,7 @@ const EditUser: NextPage = () => {
 														value={
 															value
 																? value[0]
-																		?.name
+																	?.name
 																: ""
 														}
 														name={
@@ -504,7 +487,7 @@ const EditUser: NextPage = () => {
 														// }}
 														id="upload-photo"
 														type="file"
-														// disabled={details === 'details' ? true : false}
+													// disabled={details === 'details' ? true : false}
 													/>
 												)}
 												control={

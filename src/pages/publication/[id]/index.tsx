@@ -3,13 +3,17 @@ import {
 	Button,
 	Card,
 	CardContent,
+	Checkbox,
 	FormControl,
+	FormControlLabel,
+	FormGroup,
 	FormHelperText,
 	Grid,
 	InputLabel,
 	MenuItem,
 	Select,
 	TextField,
+	Tooltip,
 	Typography,
 } from "@mui/material";
 import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
@@ -32,6 +36,7 @@ import {
 } from "../../../store/api/publication";
 import { ModalConfirm } from "../../../components/Modal";
 import {
+	useEffect,
 	useState,
 } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -40,6 +45,8 @@ import { categories } from "../../../data/@types/categories";
 import { categorys } from "../../../utils/utilsPublications";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { GetCategory } from "../../../store/api/publication/categories";
+import InfoIcon from '@mui/icons-material/Info';
 
 const Customers = () => {
 	const { "interfin-id": id } =
@@ -83,18 +90,19 @@ const Customers = () => {
 		}
 	};
 
-	// const getCategory = async () => {
-	// 	const categories =
-	// 		await GetCategories();
-	// 	categories &&
-	// 		setCategories(
-	// 			categories?.data,
-	// 		);
-	// };
+	const getCategory = async () => {
+		const categories = await GetCategory();
 
-	// useEffect(() => {
-	// 	getCategory();
-	// }, []);
+		console.log(categories)
+		// categories &&
+		// 	setCategories(
+		// 		categories?.data,
+		// 	);
+	};
+
+	useEffect(() => {
+		getCategory();
+	}, []);
 
 	const handleClose = () =>
 		setOpen(!open);
@@ -183,10 +191,12 @@ const Customers = () => {
 						>
 							<Grid
 								item
+								lg={6}
 								md={6}
 								xs={12}
 							>
 								<TextField
+									size="small"
 									fullWidth
 									label="Título"
 									variant="outlined"
@@ -203,11 +213,13 @@ const Customers = () => {
 							</Grid>
 							<Grid
 								item
-								md={6}
+								lg={4}
+								md={4}
 								xs={12}
 							>
 								<FormControl
 									fullWidth
+									size="small"
 								>
 									<InputLabel
 										error={Boolean(errors.category)}
@@ -225,6 +237,7 @@ const Customers = () => {
 											},
 										}) => (
 											<Select
+
 												label="Categoria"
 												value={
 													value
@@ -291,12 +304,35 @@ const Customers = () => {
 							</Grid>
 							<Grid
 								item
+								lg={2}
+								md={2}
+								xs={12}
+								display="flex"
+								alignItems="center"
+							>
+
+								<FormGroup >
+									<FormControlLabel
+										control={
+											<Checkbox />
+										}
+										label="Banner"
+									/>
+
+								</FormGroup>
+								<Tooltip title="Add" placement="top">
+									<InfoIcon />
+								</Tooltip>
+							</Grid>
+							<Grid
+								item
 								md={12}
 								xs={12}
 							>
 								<TextField
 									fullWidth
 									label="Url"
+									size="small"
 									placeholder="Adicione a url do vídeo"
 									variant="outlined"
 									helperText={errors.video_url?.message}
@@ -366,7 +402,7 @@ const Customers = () => {
 					</CardContent>
 				</Card>
 			</Box>
-		</DashboardLayout>
+		</DashboardLayout >
 	);
 };
 

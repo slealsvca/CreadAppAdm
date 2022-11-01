@@ -287,13 +287,13 @@ const Category = () => {
 																	</SeverityPill>
 																</TableCell>
 																<TableCell>
-																	{/* {category?.image_url &&
+																	{category?.createdAt &&
 																		moment(
-																			category?.created_at,
+																			category?.createdAt,
 																		).format(
-																			"DD/MM/YYYY HH:mm",
-																		)} */}
-																	{category?.image}
+																			"DD/MM/YYYY HH:mm,ss",
+																		)}
+																	{/* {category?.image} */}
 																</TableCell>
 																<TableCell
 																	size="small"

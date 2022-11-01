@@ -6,9 +6,7 @@ export const GetCategory =
 	async () => {
 		try {
 			const res =
-				await ApiService.get(
-					"category",
-				);
+				await ApiService.get("category");
 			return res;
 		} catch (error) {
 			if (
