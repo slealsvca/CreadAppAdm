@@ -185,9 +185,6 @@ const Publications = () => {
 												<TableCell >
 													Title
 												</TableCell>
-												<TableCell >
-													Resumo
-												</TableCell>
 												<TableCell>
 													Data de criação
 												</TableCell>
@@ -224,26 +221,27 @@ const Publications = () => {
 																	key
 																}
 															>
-																<TableCell>
+																<TableCell
+																	sx={{ maxWidth: '150px' }}
+																>
 																	<Typography
 																		color="textPrimary"
 																		variant="body1"
+																		component={"p"}
+																		sx={{
+																			whiteSpace: "nowrap",
+																			textDecoration: "none",
+																			textTransform: "none",
+																			overflow: "hidden",
+																			textOverflow: "ellipsis",
+																		}}
 																	>
-																		{
-																			article?.title
-																		}
+																		{article?.title}
+																		{/* {article?.title?.slice(
+																			0,
+																			25,
+																		)} */}
 																	</Typography>
-																</TableCell>
-																<TableCell>
-																	{article?.summary?.slice(
-																		0,
-																		90,
-																	)}
-																	{article
-																		?.summary
-																		?.length >
-																		90 &&
-																		"..."}
 																</TableCell>
 																<TableCell>
 																	{article?.createdAt &&
@@ -387,8 +385,8 @@ const Publications = () => {
 						</Card>
 					</Box>
 				</Container>
-			</Box>
-		</DashboardLayout>
+			</Box >
+		</DashboardLayout >
 	);
 };
 

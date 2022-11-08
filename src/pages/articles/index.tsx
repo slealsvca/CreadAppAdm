@@ -171,37 +171,27 @@ const Customers = () => {
 										>
 											<TableRow>
 												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
+													
 												>
 													Title
 												</TableCell>
 												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
+													
 												>
 													Categoria
 												</TableCell>
-												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
+												{/* <TableCell
+													
 												>
 													Resumo
-												</TableCell>
+												</TableCell> */}
 												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
+													
 												>
 													Status
 												</TableCell>
 												<TableCell
-													sx={{
-														color: "#ffffff !important",
-													}}
+													
 												>
 													Data
 													de
@@ -254,7 +244,7 @@ const Customers = () => {
 																	{article?.category ??
 																		"Não definido"}
 																</TableCell>
-																<TableCell>
+																{/* <TableCell>
 																	{article?.resume?.slice(
 																		0,
 																		90,
@@ -264,7 +254,7 @@ const Customers = () => {
 																		?.length >
 																		90 &&
 																		"..."}
-																</TableCell>
+																</TableCell> */}
 																<TableCell>
 																	<SeverityPill
 																		color={switchColorStatus(

@@ -28,6 +28,7 @@ export const initial: PublicationType = {
 	title: "",
 	category: "",
 	summary: "",
+	isBanners: false,
 	video_url: "",
 	image_url: "",
 };

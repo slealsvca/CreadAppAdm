@@ -1,6 +1,7 @@
 export type PublicationType = {
 	title: string;
 	category: string;
+	isBanners: boolean;
 	createdAt?: string;
 	summary: string;
 	status?: string;

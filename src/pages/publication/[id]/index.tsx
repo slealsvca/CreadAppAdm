@@ -47,6 +47,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { GetCategory } from "../../../store/api/publication/categories";
 import InfoIcon from '@mui/icons-material/Info';
+import { EditorWrapper } from "../../../components/EditorWrapper";
 
 const Customers = () => {
 	const { "interfin-id": id } =
@@ -79,6 +80,7 @@ const Customers = () => {
 	const onSubmit = async (
 		values: PublicationType,
 	) => {
+		console.log(values)
 		const response =
 			await createPublication(
 				values,
@@ -93,7 +95,7 @@ const Customers = () => {
 	const getCategory = async () => {
 		const categories = await GetCategory();
 
-		console.log(categories)
+		// console.log(categories)
 		// categories &&
 		// 	setCategories(
 		// 		categories?.data,
@@ -316,6 +318,9 @@ const Customers = () => {
 										control={
 											<Checkbox />
 										}
+										{...register(
+											"isBanners",
+										)}
 										label="Banner"
 									/>
 
@@ -360,7 +365,7 @@ const Customers = () => {
 									>
 										Resumo
 									</Typography>
-									<TextField
+									{/* <TextField
 										fullWidth
 										placeholder="Digite um pequeno resumo sobre a publicação"
 										helperText={
@@ -377,6 +382,24 @@ const Customers = () => {
 											"summary",
 										)}
 										defaultValue="Default Value"
+									/> */}
+									<Controller
+										render={({
+											field: {
+												onChange,
+												onBlur,
+												value,
+												name,
+												ref,
+											},
+										}) => (
+											<EditorWrapper
+												onChange={onChange}
+												value={value}
+											/>
+										)}
+										control={control}
+										name="summary"
 									/>
 								</FormControl>
 							</Grid>
