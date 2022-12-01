@@ -220,6 +220,16 @@ const Auth = () => {
 									senha?
 								</Link>
 							</Grid>
+							<Grid item>
+								<Link
+									href="/register"
+									variant="body2"
+								>
+									{
+										"Inscrever-se"
+									}
+								</Link>
+							</Grid>
 						</Grid>
 
 						<Button

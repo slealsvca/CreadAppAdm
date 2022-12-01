@@ -30,24 +30,7 @@ export const Schema = Yup.object()
 						`${value}`,
 					);
 				},
-			),
-		username: Yup.string().required(
-			REQUIRED_VALIDATION(
-				"Nome de usuário",
-			),
-		),
-		titration:
-			Yup.string().required(
-				REQUIRED_VALIDATION(
-					"Função",
-				),
-			),
-		institute:
-			Yup.string().required(
-				REQUIRED_VALIDATION(
-					"Instituição",
-				),
-			),
+			),	
 		password: Yup.string()
 			.required(
 				REQUIRED_VALIDATION(
@@ -77,10 +60,7 @@ export const initialValues: userType = {
 	name: "",
 	email: "",
 	cpf: "",
-	username: "",
 	password: "",
 	confirmPassword: "",
 	user_level: "writer",
-	titration: "",
-	institute: "",
 };

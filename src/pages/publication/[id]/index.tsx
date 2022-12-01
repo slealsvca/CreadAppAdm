@@ -353,6 +353,12 @@ const Customers = () => {
 								item
 								md={12}
 								xs={12}
+
+								sx={{
+									"jodit-status-bar a.jodit-status-bar-link:visited": {
+										display: "none"
+									}
+								}}
 							>
 								<FormControl
 									fullWidth

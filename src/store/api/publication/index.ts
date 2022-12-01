@@ -12,9 +12,15 @@ export const createPublication = async (
 			await ApiService.post(
 				"/publication",
 				{
-					...obj,
-					user_id: user_id && JSON.parse(user_id),
-					image_url: "https://f.i.uol.com.br/fotografia/2022/10/18/1666091582634e8a3e8ddcf_1666091582_3x2_lg.jpg",
+					title: obj.title,
+					category: parseInt(obj.category) + 1,
+					isBanners: obj.isBanners,
+					summary: obj.summary,
+					video_url: obj.video_url,
+					image_url: "https://cdn.stocksnap.io/img-thumbs/960w/Nature-himalayas_CTYDCWIKGP.jpg",
+					user_id: user_id && parseInt(JSON.parse(user_id))
+
+
 				},
 			);
 		return response;

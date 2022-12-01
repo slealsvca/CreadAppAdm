@@ -263,7 +263,7 @@ const Publications = () => {
 																	</SeverityPill>
 																</TableCell>
 																<TableCell>
-																	{article?.category ??
+																	{article?.category?.name ??
 																		"Não definido"}
 																</TableCell>
 																<TableCell

@@ -8,7 +8,7 @@ export const createUser = async (
 	try {
 		const response =
 			await ApiService.post(
-				"/users",
+				"/user",
 				obj,
 			);
 		return response;

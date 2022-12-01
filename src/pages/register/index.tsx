@@ -207,7 +207,7 @@ const Register = () => {
 					<Grid
 						item
 						xs={12}
-						md={6}
+						md={12}
 					>
 						<Controller
 							render={({
@@ -245,81 +245,7 @@ const Register = () => {
 							defaultValue=""
 						/>
 					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-					>
-						<TextField
-							error={
-								errors.username &&
-								touchedFields.username
-							}
-							fullWidth
-							helperText={
-								errors.username &&
-								touchedFields.username &&
-								errors
-									.username
-									.message
-							}
-							label="Nome de usuário"
-							{...register(
-								"username",
-							)}
-							variant="outlined"
-						/>
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-					>
-						<TextField
-							error={
-								errors.titration &&
-								touchedFields.titration
-							}
-							fullWidth
-							helperText={
-								errors.titration &&
-								touchedFields.titration &&
-								errors
-									.titration
-									.message
-							}
-							label="Titulação"
-							{...register(
-								"titration",
-							)}
-							variant="outlined"
-						/>
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-					>
-						<TextField
-							error={
-								errors.institute &&
-								touchedFields.institute
-							}
-							fullWidth
-							helperText={
-								errors.institute &&
-								touchedFields.institute &&
-								errors
-									.institute
-									.message
-							}
-							label="Instituição"
-							{...register(
-								"institute",
-							)}
-							variant="outlined"
-						/>
-					</Grid>
+								
 					<Grid
 						item
 						xs={12}
