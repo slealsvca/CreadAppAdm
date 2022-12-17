@@ -24,6 +24,7 @@ import {
 } from "../../data/validations/schemaAccount";
 import { updatedUser } from "../../store/api/user/updatedUser";
 import { Alerts } from "../Alert";
+import { parseCookies } from "nookies";
 
 type FormData = {
 	user: userType;
@@ -41,6 +42,7 @@ export const AccountProfileDetails = (
 	props: FormData,
 ) => {
 	const { user, loading } = props;
+	const { "interfin-id": id } = parseCookies();
 	const [open, setOpen] = useState<modalProps>({
 		open: false,
 		alertText: "",
@@ -68,7 +70,7 @@ export const AccountProfileDetails = (
 	) => {
 		const res = await updatedUser(
 			value,
-			5,
+			parseInt(JSON.parse(id)),
 		);
 
 		if (res?.status === 204) {
@@ -90,14 +92,6 @@ export const AccountProfileDetails = (
 				name: user?.name,
 				email: user?.email,
 				cpf: user?.cpf,
-				username:
-					user?.username,
-				user_level:
-					user?.user_level,
-				titration:
-					user?.titration,
-				institute:
-					user?.institute,
 			});
 	}, [reset, user]);
 
@@ -132,7 +126,7 @@ export const AccountProfileDetails = (
 					>
 						<Grid
 							item
-							md={6}
+							md={12}
 							xs={12}
 						>
 							{" "}
@@ -147,6 +141,7 @@ export const AccountProfileDetails = (
 										value={
 											value
 										}
+										size="small"
 										onChange={
 											onChange
 										}
@@ -174,7 +169,7 @@ export const AccountProfileDetails = (
 						</Grid>
 						<Grid
 							item
-							md={6}
+							md={12}
 							xs={12}
 						>
 							<Controller
@@ -188,6 +183,7 @@ export const AccountProfileDetails = (
 										value={MaskCpf(
 											value,
 										)}
+										size="small"
 										onChange={
 											onChange
 										}
@@ -216,7 +212,7 @@ export const AccountProfileDetails = (
 						</Grid>
 						<Grid
 							item
-							md={6}
+							md={12}
 							xs={12}
 						>
 							<Controller
@@ -230,6 +226,7 @@ export const AccountProfileDetails = (
 										value={
 											value
 										}
+										size="small"
 										onChange={
 											onChange
 										}
@@ -256,178 +253,7 @@ export const AccountProfileDetails = (
 								defaultValue=""
 							/>
 						</Grid>
-						<Grid
-							item
-							md={6}
-							xs={12}
-						>
-							<Controller
-								render={({
-									field: {
-										onChange,
-										value,
-									},
-								}) => (
-									<TextField
-										value={
-											value
-										}
-										onChange={
-											onChange
-										}
-										error={
-											errors.username &&
-											touchedFields.username
-										}
-										fullWidth
-										helperText={
-											errors.username &&
-											touchedFields.username &&
-											errors
-												.username
-												.message
-										}
-										label="Nome de usuário"
-										variant="outlined"
-									/>
-								)}
-								name="username"
-								control={
-									control
-								}
-								defaultValue=""
-							/>
-						</Grid>
-						<Grid
-							item
-							md={6}
-							xs={12}
-						>
-							<Controller
-								render={({
-									field: {
-										onChange,
-										value,
-									},
-								}) => (
-									<TextField
-										value={
-											value
-										}
-										onChange={
-											onChange
-										}
-										error={
-											errors.titration &&
-											touchedFields.titration
-										}
-										fullWidth
-										helperText={
-											errors.titration &&
-											touchedFields.titration &&
-											errors
-												.titration
-												.message
-										}
-										label="Função"
-										variant="outlined"
-									/>
-								)}
-								name="titration"
-								control={
-									control
-								}
-								defaultValue=""
-							/>
-						</Grid>
-						<Grid
-							item
-							md={6}
-							xs={12}
-						>
-							<Controller
-								render={({
-									field: {
-										onChange,
-										value,
-									},
-								}) => (
-									<TextField
-										value={
-											value
-										}
-										onChange={
-											onChange
-										}
-										error={
-											errors.user_level &&
-											touchedFields.user_level
-										}
-										fullWidth
-										inputProps={{
-											readOnly:
-												true,
-										}}
-										helperText={
-											errors.user_level &&
-											touchedFields.user_level &&
-											errors
-												.user_level
-												.message
-										}
-										label="Nível de acesso"
-										variant="outlined"
-									/>
-								)}
-								name="user_level"
-								control={
-									control
-								}
-								defaultValue=""
-							/>
-						</Grid>
-						<Grid
-							item
-							md={12}
-							xs={12}
-						>
-							<Controller
-								render={({
-									field: {
-										onChange,
-										value,
-									},
-								}) => (
-									<TextField
-										value={
-											value
-										}
-										onChange={
-											onChange
-										}
-										error={
-											errors.institute &&
-											touchedFields.institute
-										}
-										fullWidth
-										helperText={
-											errors.institute &&
-											touchedFields.institute &&
-											errors
-												.institute
-												.message
-										}
-										label="Instituição"
-										variant="outlined"
-									/>
-								)}
-								name="institute"
-								control={
-									control
-								}
-								defaultValue=""
-							/>
-						</Grid>
+
 					</Grid>
 				</CardContent>
 				<Divider />

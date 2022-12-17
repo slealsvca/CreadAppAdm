@@ -10,8 +10,12 @@ export const updatedUser = async (
 	try {
 		const response =
 			await ApiService.put(
-				`/users/${id}`,
-				obj,
+				`/user/updated/${id}`,
+				{
+					...obj,
+					password: ""
+				}
+
 			);
 		return response;
 	} catch (error) {

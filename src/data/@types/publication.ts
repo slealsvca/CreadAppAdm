@@ -9,6 +9,20 @@ export type PublicationType = {
 	image_url: string;
 };
 
+export type PublicationTypeTB = {
+	title: string;
+	category: {
+		name: string
+	}
+	;
+	isBanners: boolean;
+	createdAt?: string;
+	summary: string;
+	status?: string;
+	video_url: string;
+	image_url: string;
+};
+
 export type CategoryType = {
 	value: string;
 	label?: string;

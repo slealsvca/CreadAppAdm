@@ -34,25 +34,6 @@ export const SchemaAccount =
 						);
 					},
 				),
-			username:
-				Yup.string().required(
-					REQUIRED_VALIDATION(
-						"Nome de usuário",
-					),
-				),
-			titration:
-				Yup.string().required(
-					REQUIRED_VALIDATION(
-						"Titulação",
-					),
-				),
-			institute:
-				Yup.string().required(
-					REQUIRED_VALIDATION(
-						"Instituição",
-					),
-				),
-			user_level: Yup.string(),
 		})
 		.required()
 		.nullable();
@@ -61,18 +42,10 @@ export const initialAccount = {
 	name: "",
 	email: "",
 	cpf: "",
-	username: "",
-	user_level: "writer",
-	titration: "",
-	institute: "",
 };
 
 export type typeAccount = {
 	name: string;
 	email: string;
 	cpf: string;
-	username: string;
-	user_level: string;
-	titration: string;
-	institute: string;
 };

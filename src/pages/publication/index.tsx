@@ -43,7 +43,7 @@ import FormModal from "../../components/FormModal";
 import { Alerts } from "../../components/Alert";
 import ArticleIcon from "@mui/icons-material/Article";
 import { Link } from "../../components/Navigation/Link";
-import { PublicationType } from "../../data/@types/publication";
+import { PublicationType, PublicationTypeTB } from "../../data/@types/publication";
 import { getAllPublications } from "../../store/api/publication";
 import { useRouter } from "next/router";
 
@@ -60,7 +60,7 @@ const Publications = () => {
 	const [alertType, setAlertType] =
 		useState("");
 	const [publications, setPublications] =
-		useState<PublicationType[]>([]);
+		useState<PublicationTypeTB[]>([]);
 	const [loading, setLoading] =
 		useState(false);
 	const [page, setPage] = useState(0);
@@ -212,7 +212,7 @@ const Publications = () => {
 													)
 													?.map(
 														(
-															article: PublicationType,
+															article: PublicationTypeTB,
 															key: number,
 														) => (
 															<TableRow

@@ -28,8 +28,7 @@ import { useRouter } from 'next/router'
 
 
 const CreateBanners = () => {
-	const { "interfin-id": id } =
-		parseCookies();
+	const { "interfin-id": id } = parseCookies();
 	const [open, setOpen] = useState(false);
 	const router = useRouter()
 
