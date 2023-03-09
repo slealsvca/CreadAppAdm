@@ -7,6 +7,7 @@ export type PublicationType = {
 	status?: string;
 	video_url: string;
 	image_url: string;
+	file: string;
 };
 
 export type PublicationTypeTB = {

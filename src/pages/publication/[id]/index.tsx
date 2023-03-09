@@ -54,14 +54,13 @@ const Customers = () => {
 		parseCookies();
 	const [open, setOpen] = useState(false);
 	const router = useRouter();
-	const [categories, setCategories] =
-		useState<categories[]>(categorys);
+	const [category, setCategory] = useState<categories[]>(categorys);
 
 	const {
 		register,
 		handleSubmit,
-		watch,
 		reset,
+		setValue,
 		control,
 		formState: {
 			errors,
@@ -69,23 +68,15 @@ const Customers = () => {
 		},
 	} = useForm({
 		mode: 'all',
-		resolver: yupResolver(
-			SchemaPublication,
-		),
-		defaultValues: {
-			...initial,
-		},
+		resolver: yupResolver(SchemaPublication),
+		defaultValues: initial,
 	});
 
 	const onSubmit = async (
 		values: PublicationType,
 	) => {
 		console.log(values)
-		const response =
-			await createPublication(
-				values,
-				id
-			);
+		const response = await createPublication(values, id);
 		if (response?.status === 201) {
 			reset();
 			setOpen(!open);
@@ -93,13 +84,12 @@ const Customers = () => {
 	};
 
 	const getCategory = async () => {
-		const categories = await GetCategory();
+		const res = await GetCategory();
 
-		// console.log(categories)
-		// categories &&
-		// 	setCategories(
-		// 		categories?.data,
-		// 	);
+		if (res?.status === 200) {
+			console.log(res?.data?.content)
+			setCategory(res?.data?.content);
+		}
 	};
 
 	useEffect(() => {
@@ -265,24 +255,15 @@ const Customers = () => {
 														categoria
 													</em>
 												</MenuItem>
-												{categories?.map(
-													(
-														item,
-														key: number,
-													) => (
-														<MenuItem
-															key={
-																key
-															}
-															value={
-																item?.name
-															}
-														>
-															{
-																item?.id
-															}
-														</MenuItem>
-													),
+												{category?.map(item => (
+													<MenuItem
+														key={item?.id}
+														value={item?.id}
+													>
+														{item?.name}
+														
+													</MenuItem>
+												),
 												)}
 											</Select>
 										)}
@@ -414,16 +395,16 @@ const Customers = () => {
 								md={12}
 								xs={12}
 							>
-								<FormControl
-									fullWidth
-								>
+								<FormControl fullWidth>
 									<DropZoneUpload
-										file={watch(
-											"image_url",
-										)}
-										{...register(
-											"image_url",
-										)}
+										name='file'
+										error={Boolean(errors.file)}
+										helperText={Boolean(errors.file) ? `${errors.file?.message}` : ''}
+										setValue={(value: string) => {
+											console.log(value)
+											setValue('file', value)
+										}}
+
 									/>
 								</FormControl>
 							</Grid>

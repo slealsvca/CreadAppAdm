@@ -21,6 +21,9 @@ export const SchemaPublication = yup
 			),
 		video_url: yup.mixed(),
 		image_url: yup.mixed(),
+		file: yup.string().required(
+			"Arquivo obrigatório",
+		),
 	})
 	.required();
 
@@ -31,4 +34,5 @@ export const initial: PublicationType = {
 	isBanners: false,
 	video_url: "",
 	image_url: "",
+	file: "",
 };

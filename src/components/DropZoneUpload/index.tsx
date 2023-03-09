@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
 	useEffect,
 	useState,
@@ -11,39 +12,34 @@ import {
 	Input,
 	Typography,
 } from "@mui/material";
-
+import { uploadImage } from "../../store/images";
+ 
 interface IProps {
-	title?: string;
-	subTitle?: string;
-	file?: any;
-	register?: any;
+	name?: string;
 	helperText?: string;
 	error?: boolean;
+	setValue: (value: string) => void;
 }
 
-// eslint-disable-next-line react/display-name
-const DropZoneUpload = React.forwardRef<
-	HTMLInputElement,
-	IProps
->((props, ref) => {
-	const { file, ...rest } = props;
 
-	const [name, setName] = useState(
-		"Arraste e solte um arquivo ou selecione um vídeo",
-	);
 
-	useEffect(() => {
-		{
-			file &&
-				setName(file[0]?.name);
-		}
-	}, [file]);
+const DropZoneUpload = React.forwardRef<HTMLInputElement, IProps>((props) => {
+	const { error, helperText, setValue } = props;
+
+	const [name, setName] = useState("Arraste e solte um arquivo ou selecione um arquivo");
+
+	const handleUpload = (file: File) => {
+		uploadImage(file).then((response) => {
+			if (response?.success) {
+				const { data } = response;
+				setName(data?.title);
+				setValue(data?.url);
+			}
+		})
+	}
 
 	const handleClick = () => {
-		const fileUpload =
-			document.getElementById(
-				"fileUpload",
-			);
+		const fileUpload = document.getElementById("fileUpload");
 		fileUpload?.click();
 	};
 
@@ -55,7 +51,7 @@ const DropZoneUpload = React.forwardRef<
 				fullWidth
 				variant="contained"
 			>
-				{props?.subTitle || "Selecionar vídeo"}
+				Selecionar arquivo
 			</Button>
 
 			<Box
@@ -66,42 +62,32 @@ const DropZoneUpload = React.forwardRef<
 			>
 				<Box
 					mt={2}
-					border={
-						"4px dashed"
-					}
-					borderColor={
-						props?.error
-							? "red"
-							: "primary.main"
-					}
-					position={
-						"relative"
-					}
+					border={"4px dashed"}
+					borderColor={props?.error ? "red" : "primary.main"}
+					position={"relative"}
 				>
 					<Input
 						id="fileUpload"
 						type="file"
-						inputProps={{
-							accept: "*",
-						}}
+						inputProps={{ accept: "*" }}
 						sx={{
-							position:
-								"absolute",
+							position: "absolute",
 							m: 0,
 							p: 0,
 							width: "100%",
 							height: "100%",
-							outline:
-								"none",
+							outline: "none",
 							opacity: 0,
 							cursor: "pointer",
-							"#fileUpload":
-							{
+							"#fileUpload": {
 								height: "100%",
 							},
 						}}
-						{...rest}
-						ref={ref}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+							if (e.target.files) {
+								handleUpload(e.target.files[0]);
+							}
+						}}
 					/>
 					<Typography
 						variant="h6"
@@ -109,25 +95,18 @@ const DropZoneUpload = React.forwardRef<
 						align="center"
 						height={"210px"}
 						display={"flex"}
-						justifyContent={
-							"center"
-						}
-						alignItems={
-							"center"
-						}
+						justifyContent={"center"}
+						alignItems={"center"}
 						sx={{
 							cursor: "pointer",
-							textTransform:
-								"uppercase",
+							textTransform: "uppercase",
 						}}
 					>
-						{props?.title || name}
+						{name}
 					</Typography>
 				</Box>
-				<FormHelperText
-					error={props?.error}
-				>
-					{props?.helperText}
+				<FormHelperText error={error}>
+					{helperText}
 				</FormHelperText>
 			</Box>
 		</Grid>

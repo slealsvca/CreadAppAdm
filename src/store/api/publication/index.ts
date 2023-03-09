@@ -13,11 +13,11 @@ export const createPublication = async (
 				"/publication",
 				{
 					title: obj.title,
-					category: parseInt(obj.category) + 1,
+					category: obj.category,
 					isBanners: obj.isBanners,
 					summary: obj.summary,
 					video_url: obj.video_url,
-					image_url: "https://cdn.stocksnap.io/img-thumbs/960w/Nature-himalayas_CTYDCWIKGP.jpg",
+					image_url: obj.file,
 					user_id: user_id && parseInt(JSON.parse(user_id))
 
 
