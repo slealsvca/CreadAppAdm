@@ -16,6 +16,7 @@ export const createPublication = async (
 					category: obj.category,
 					isBanners: obj.isBanners,
 					summary: obj.summary,
+					content: obj.content,
 					video_url: obj.video_url,
 					image_url: obj.file,
 					user_id: user_id && parseInt(JSON.parse(user_id))

@@ -75,7 +75,7 @@ const Customers = () => {
 	const onSubmit = async (
 		values: PublicationType,
 	) => {
-		console.log(values)
+		console.log(values);
 		const response = await createPublication(values, id);
 		if (response?.status === 201) {
 			reset();
@@ -87,7 +87,6 @@ const Customers = () => {
 		const res = await GetCategory();
 
 		if (res?.status === 200) {
-			console.log(res?.data?.content)
 			setCategory(res?.data?.content);
 		}
 	};
@@ -133,6 +132,7 @@ const Customers = () => {
 					display="flex"
 					justifyContent="space-between"
 					alignItems="center"
+					mb={2}
 				>
 					<Typography
 						variant="h5"
@@ -261,7 +261,7 @@ const Customers = () => {
 														value={item?.id}
 													>
 														{item?.name}
-														
+
 													</MenuItem>
 												),
 												)}
@@ -302,11 +302,15 @@ const Customers = () => {
 										{...register(
 											"isBanners",
 										)}
-										label="Banner"
+										label="Produto"
 									/>
 
 								</FormGroup>
-								<Tooltip title="Add" placement="top">
+								<Tooltip
+									arrow
+									title="Caixa de seleção definirá se a publicação  será um produto ou não"
+									placement="top-start"
+								>
 									<InfoIcon />
 								</Tooltip>
 							</Grid>
@@ -334,51 +338,50 @@ const Customers = () => {
 								item
 								md={12}
 								xs={12}
-
 								sx={{
 									"jodit-status-bar a.jodit-status-bar-link:visited": {
 										display: "none"
 									}
 								}}
 							>
-								<FormControl
-									fullWidth
-								>
+								<FormControl fullWidth>
 									<Typography
 										variant="h6"
-										color={
-											"textSecondary"
-										}
+										color={"textSecondary"}
 									>
 										Resumo
 									</Typography>
-									{/* <TextField
+									<TextField
 										fullWidth
 										placeholder="Digite um pequeno resumo sobre a publicação"
-										helperText={
-											errors
-												.summary
-												?.message
-										}
+										helperText={errors.summary?.message}
 										error={Boolean(errors.summary)}
 										multiline
-										rows={
-											10
-										}
-										{...register(
-											"summary",
-										)}
-										defaultValue="Default Value"
-									/> */}
+										rows={2}
+										{...register("summary")}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid
+								item
+								md={12}
+								xs={12}
+								sx={{
+									"jodit-status-bar a.jodit-status-bar-link:visited": {
+										display: "none"
+									}
+								}}
+							>
+								<FormControl fullWidth>
+									<Typography
+										variant="h6"
+										color="textSecondary"
+									>
+										Conteúdo
+									</Typography>
 									<Controller
 										render={({
-											field: {
-												onChange,
-												onBlur,
-												value,
-												name,
-												ref,
-											},
+											field: { onChange, value },
 										}) => (
 											<EditorWrapper
 												onChange={onChange}
@@ -386,7 +389,7 @@ const Customers = () => {
 											/>
 										)}
 										control={control}
-										name="summary"
+										name="content"
 									/>
 								</FormControl>
 							</Grid>

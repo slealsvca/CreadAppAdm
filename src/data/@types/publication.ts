@@ -4,6 +4,7 @@ export type PublicationType = {
 	isBanners: boolean;
 	createdAt?: string;
 	summary: string;
+	content: string;
 	status?: string;
 	video_url: string;
 	image_url: string;
