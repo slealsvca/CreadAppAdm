@@ -14,7 +14,8 @@ import {
 	Tooltip,
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { SeverityPill } from "../severity-pill";
+import { SeverityPill } from "../DashboardSidebar/severity-pill";
+ 
 
 const orders = [
 	{

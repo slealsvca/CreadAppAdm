@@ -16,7 +16,7 @@ export const getUsersArticles =
 
 			return (
 				response.status ===
-					200 &&
+				200 &&
 				response?.data
 			);
 		} catch (error) {
@@ -64,40 +64,3 @@ export const deleteArticle = async (
 	}
 };
 
-export const updatedArticle = async (
-	obj: PublicationType,
-	id: string,
-) => {
-	//await new Promise(resolve => setTimeout(resolve, 10000));
-	let {
-		title,
-		resume,
-		category_id,
-		user_id,
-		file,
-	} = obj;
-	const body = {
-		id: id,
-		title,
-		resume,
-		category_id,
-		userArticle_id: user_id,
-		status: "pending",
-	};
-
-	try {
-		const response =
-			await ApiService.put(
-				`/articles/${id}`,
-				body,
-			);
-		return response;
-	} catch (error) {
-		if (
-			error instanceof AxiosError
-		) {
-			return error.response?.data
-				?.message;
-		}
-	}
-};

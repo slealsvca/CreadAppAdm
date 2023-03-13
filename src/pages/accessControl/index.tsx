@@ -282,7 +282,7 @@ const AccessControl = () => {
 																</TableCell>
 																<TableCell>
 																	{
-																		user.username
+																		user.name
 																	}
 																</TableCell>
 																<TableCell>

@@ -42,7 +42,7 @@ const CreateCategory = () => {
 	const {
 		register,
 		handleSubmit,
-		watch,
+		setValue,
 		reset,
 		formState: {
 			errors,
@@ -188,19 +188,17 @@ const CreateCategory = () => {
 								item
 								md={12}
 								xs={12}
-							>
-								<FormControl
-									fullWidth
-								>
+							> 
+								<FormControl fullWidth>
 									<DropZoneUpload
-										file={watch(
-											"image",
-										)}
-										{...register(
-											"image",
-										)}
-										title="Arraste e solte um arquivo ou selecione uma imagem"
-										subTitle="Selecionar imagem"
+										name='image'
+										error={Boolean(errors.image)}
+										helperText={Boolean(errors.image) ? `${errors.image?.message}` : ''}
+										setValue={(value: string) => {
+											console.log(value)
+											setValue('image', value)
+										}}
+
 									/>
 								</FormControl>
 							</Grid>

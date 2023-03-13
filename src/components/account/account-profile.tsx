@@ -56,7 +56,7 @@ export const AccountProfile = (
 					color="textSecondary"
 					variant="body2"
 				>
-					{`${user.titration} ${userMock.timezone}`}
+					{`${user.name} ${userMock.timezone}`}
 				</Typography>
 				<Typography
 					color="textSecondary"

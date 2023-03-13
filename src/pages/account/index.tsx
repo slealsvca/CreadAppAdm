@@ -22,14 +22,11 @@ const Account = () => {
 		useState<userType>({
 			name: "",
 			email: "",
-			cpf: "",
-			username: "",
+			cpf: "", 
 			password: "",
 			confirmPassword: "",
 			user_level: "",
-			avatar: "",
-			titration: "",
-			institute: "",
+			avatar: "",  
 			id: "",
 		});
 	const [loading, setLoading] =
