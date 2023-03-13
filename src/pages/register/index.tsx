@@ -123,12 +123,12 @@ const Register = () => {
 								"center",
 						}}
 					>
-						<Typography
+						{/* <Typography
 							color="textPrimary"
 							variant="h4"
 						>
 							Inscrever-se
-						</Typography>
+						</Typography> */}
 						<Typography
 							color="textSecondary"
 							gutterBottom

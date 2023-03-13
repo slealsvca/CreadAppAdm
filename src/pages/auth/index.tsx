@@ -221,14 +221,14 @@ const Auth = () => {
 								</Link>
 							</Grid>
 							<Grid item>
-								<Link
+								{/* <Link
 									href="/register"
 									variant="body2"
 								>
 									{
 										"Inscrever-se"
 									}
-								</Link>
+								</Link> */}
 							</Grid>
 						</Grid>
 

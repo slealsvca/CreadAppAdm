@@ -61,6 +61,7 @@ const Customers = () => {
 		handleSubmit,
 		reset,
 		setValue,
+		clearErrors,
 		control,
 		formState: {
 			errors,
@@ -291,7 +292,7 @@ const Customers = () => {
 								md={2}
 								xs={12}
 								display="flex"
-								alignItems="center"
+								alignItems="baseline"
 							>
 
 								<FormGroup >
@@ -323,6 +324,7 @@ const Customers = () => {
 									fullWidth
 									label="Url"
 									size="small"
+									disabled
 									placeholder="Adicione a url do vídeo"
 									variant="outlined"
 									helperText={errors.video_url?.message}
@@ -391,6 +393,16 @@ const Customers = () => {
 										control={control}
 										name="content"
 									/>
+									<FormHelperText
+										error
+									>
+										{
+											errors
+												.content
+												?.message
+										}
+									</FormHelperText>
+
 								</FormControl>
 							</Grid>
 							<Grid
@@ -401,6 +413,7 @@ const Customers = () => {
 								<FormControl fullWidth>
 									<DropZoneUpload
 										name='file'
+										clearErrors={() => clearErrors('file')}
 										error={Boolean(errors.file)}
 										helperText={Boolean(errors.file) ? `${errors.file?.message}` : ''}
 										setValue={(value: string) => {

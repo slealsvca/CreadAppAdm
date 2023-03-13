@@ -13,27 +13,32 @@ import {
 	Typography,
 } from "@mui/material";
 import { uploadImage } from "../../store/images";
- 
+
 interface IProps {
 	name?: string;
+	nameComponent?: string;
 	helperText?: string;
 	error?: boolean;
 	setValue: (value: string) => void;
+	clearErrors: (name?: string) => void;
 }
 
 
 
 const DropZoneUpload = React.forwardRef<HTMLInputElement, IProps>((props) => {
-	const { error, helperText, setValue } = props;
+	const { error, helperText, setValue, clearErrors, nameComponent } = props;
 
 	const [name, setName] = useState("Arraste e solte um arquivo ou selecione um arquivo");
 
 	const handleUpload = (file: File) => {
 		uploadImage(file).then((response) => {
 			if (response?.success) {
+
 				const { data } = response;
 				setName(data?.title);
 				setValue(data?.url);
+				clearErrors(nameComponent);
+
 			}
 		})
 	}
