@@ -44,6 +44,7 @@ const CreateCategory = () => {
 		handleSubmit,
 		setValue,
 		reset,
+		clearErrors,
 		formState: {
 			errors,
 			isSubmitting,
@@ -198,6 +199,7 @@ const CreateCategory = () => {
 											console.log(value)
 											setValue('image', value)
 										}}
+										clearErrors={() => clearErrors('image')}
 
 									/>
 								</FormControl>

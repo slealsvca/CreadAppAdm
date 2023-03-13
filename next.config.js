@@ -13,7 +13,7 @@ module.exports = {
 	styledComponents: true,
 	env: {
 		API_APP_URL:
-			"http://localhost:8080",
+			"https://interfin-gradl-production.up.railway.app",
 		CLIENT_ID:
 			"86282043700-eopv874vgfrhagndhs6ja55gfqnni2m7.apps.googleusercontent.com",
 		CLIENT_SECRET_KEY:
