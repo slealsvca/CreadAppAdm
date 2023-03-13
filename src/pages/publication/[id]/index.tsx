@@ -79,7 +79,7 @@ const Customers = () => {
 		console.log(values);
 		const response = await createPublication(values, id);
 		if (response?.status === 201) {
-			reset();
+			reset(initial);
 			setOpen(!open);
 		}
 	};
