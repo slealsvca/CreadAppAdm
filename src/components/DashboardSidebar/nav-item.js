@@ -12,6 +12,7 @@ export const NavItem = props => {
 		href,
 		icon,
 		title,
+		disabled,
 		...others
 	} = props;
 	const router = useRouter();
@@ -30,7 +31,7 @@ export const NavItem = props => {
 			}}
 			{...others}
 		>
-			<NextLink
+			<NextLink				
 				href={href}
 				passHref
 			>
@@ -38,6 +39,7 @@ export const NavItem = props => {
 					component="a"
 					startIcon={icon}
 					disableRipple
+					disabled={disabled}
 					sx={{
 						backgroundColor:
 							active &&

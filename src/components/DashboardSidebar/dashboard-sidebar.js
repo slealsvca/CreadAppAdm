@@ -5,7 +5,7 @@ import {
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
-import CategoryIcon from '@mui/icons-material/Category';
+import CategoryIcon from "@mui/icons-material/Category";
 
 import {
 	Box,
@@ -19,7 +19,9 @@ import { Selector as SelectorIcon } from "../../icons/selector";
 import { NavItem } from "./nav-item";
 import { parseCookies } from "nookies";
 import BallotIcon from "@mui/icons-material/Ballot";
-import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
+import Image from "next/image";
+import SubtitlesIcon from '@mui/icons-material/Subtitles';
 
 const items = [
 	{
@@ -28,6 +30,7 @@ const items = [
 			<ChartBarIcon fontSize="small" />
 		),
 		title: "Dashboard",
+		disabled: false,
 	},
 	{
 		href: "/publication",
@@ -35,6 +38,7 @@ const items = [
 			<BallotIcon fontSize="small" />
 		),
 		title: "Publicações",
+		disabled: false,
 	},
 	{
 		href: "/category",
@@ -42,14 +46,24 @@ const items = [
 			<CategoryIcon fontSize="small" />
 		),
 		title: "Categorias",
+		disabled: false,
 	},
-	// {
-	// 	href: "/banners",
-	// 	icon: (
-	// 		<ViewCarouselIcon fontSize="small" />
-	// 	),
-	// 	title: "Banners",
-	// },
+	{
+		href: "/visual-identity",
+		icon: (
+			<ViewCarouselIcon fontSize="small" />
+		),
+		title: "Identidade Visual",
+		disabled: true,
+	},
+	{
+		href: "/access-control",
+		icon: (
+			<SubtitlesIcon fontSize="small" />
+		),
+		title: "Controle de Acesso",
+		disabled: true,
+	},
 ];
 
 export const DashboardSidebar =
@@ -115,15 +129,33 @@ export const DashboardSidebar =
 							<NextLink
 								href="/"
 								passHref
-							>								
-
+							>
 								<Typography
 									variant="h4"
 									sx={{
 										color: "#ffffff",
 									}}
 								>
-									INTERFIN
+									<Image
+										onClick={() =>
+											router.push(
+												`/`,
+											)
+										}
+										src={
+											"/static/2Logotipo-PNG/VersaoHorizontal/Horizontal-Principal1.png"
+										}
+										alt="logo"
+										width={
+											130
+										}
+										height={
+											40
+										}
+										style={{
+											cursor: "pointer",
+										}}
+									/>
 								</Typography>
 							</NextLink>
 						</Box>
@@ -161,7 +193,7 @@ export const DashboardSidebar =
 										color="neutral.400"
 										variant="body2"
 									>
-										Função 
+										Função
 										:
 										Administrador
 									</Typography>
@@ -203,6 +235,9 @@ export const DashboardSidebar =
 									title={
 										item.title
 									}
+									disabled={
+										item.disabled
+									}
 								/>
 							),
 						)}
@@ -212,7 +247,7 @@ export const DashboardSidebar =
 							borderColor:
 								"#2D3748",
 						}}
-					/>					
+					/>
 				</Box>
 			</>
 		);
