@@ -1,43 +1,35 @@
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	FormControl,
-	Grid,
-	TextField,
-	Typography,
-} from "@mui/material";
-import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
-import { parseCookies } from "nookies";
-import HeadComponent from "../../../components/Head";
-import {
-	useForm,
-} from "react-hook-form";
+import React, { useState } from "react";
+import { useRouter } from 'next/router';
 
+// @ MUI
+import { Box, Button, Card, CardContent, FormControl, Grid, TextField, Typography } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
+// @ Components
+import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
+import HeadComponent from "../../../components/Head";
 import DropZoneUpload from "../../../components/DropZoneUpload";
 import { Loader } from "../../../components/Loader";
 import { ModalConfirm } from "../../../components/Modal";
-import {
-	useState,
-} from "react";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useRouter } from 'next/router'
+
+// @ Services
 import { CategoryCreate } from "../../../store/api/publication/categories";
+
+// @ Validation
 import { schemaCategory, initial } from "../../../utils/validation/schemaCategory";
+
+// @ Hooks useForm
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+// @ Types
 import { Category } from "../../../data/@types/category";
 
 
-
-const CreateCategory = () => {
-	const { "interfin-id": id } =
-		parseCookies();
+const CreateCategory = () => { 
 	const [open, setOpen] = useState(false);
-	const router = useRouter()
-
-
+	const router = useRouter();
 
 	const {
 		register,
@@ -45,36 +37,31 @@ const CreateCategory = () => {
 		setValue,
 		reset,
 		clearErrors,
-		formState: {
-			errors,
-			isSubmitting,
-		},
+		formState: { errors, isSubmitting },
 	} = useForm({
 		mode: 'all',
-		resolver: yupResolver(
-			schemaCategory,
-		),
+		resolver: yupResolver(schemaCategory),
 		defaultValues: initial
-
 	});
 
-	const onSubmit = async (
-		values: Category,
-	) => {
-		const response =
-			await CategoryCreate({
-				name: values.name,
-				image: "/static/images/avatars/avatar_11.png",
-			});
+	const onSubmit = async (values: Category) => {
+		const response = await CategoryCreate({
+			name: values.name,
+			image: "/static/images/avatars/avatar_11.png",
+		});
 
 		if (response?.status === 201) {
-			reset();
+			
 			setOpen(!open);
 		}
 	};	
 
-	const handleClose = () =>
+	const handleClose = () => {
 		setOpen(!open);
+		reset();
+		router.back();
+	};
+
 	return (
 		<DashboardLayout>
 			<HeadComponent title="Publications" />
@@ -85,122 +72,71 @@ const CreateCategory = () => {
 					py: 2,
 					px: 3,
 				}}
-				onSubmit={handleSubmit(
-					onSubmit,
-				)}
+				onSubmit={handleSubmit(onSubmit)}
 			>
 				<ModalConfirm
 					open={open}
-					onClose={
-						handleClose
-					}
-					onSubmit={
-						handleClose
-					}
+					onClose={handleClose}
+					onSubmit={handleClose}
 					subTitle="Categoria cadastrada com sucesso"
 				/>
-				{isSubmitting && (
-					<Loader
-						loading={
-							isSubmitting
-						}
-					/>
-				)}
+				{isSubmitting && <Loader loading={isSubmitting} />}
 				<Grid xs={12} container marginBottom={1}>
-					<Grid item xs={12} md={8} >
+					<Grid item xs={12} md={8}>
 						<Box>
-							<Typography
-								variant="h5"
-								component="h2"
-								gutterBottom
-							>
+							<Typography variant="h5" component="h2" gutterBottom>
 								Categorias
 							</Typography>
 						</Box>
 					</Grid>
-					<Grid
-						item
-						md={4}
-						gap={2}
-						xs={12}
-						display="flex"
-						justifyContent={"flex-end"}
-					>
+					<Grid item md={4} gap={2} xs={12} display="flex" justifyContent="flex-end">
 						<Button
-							//fullWidth
 							size="small"
 							color="primary"
 							variant="outlined"
-							startIcon={
-								<HighlightOffIcon  fontSize="small"/>
-							}
+							startIcon={<HighlightOffIcon fontSize="small" />}
 							onClick={() => {
-								router.back()
+								router.back();
 							}}
 						>
 							Voltar
 						</Button>
 						<Button
 							size="small"
-							//fullWidth
 							color="primary"
 							variant="contained"
-							startIcon={
-								<AddCircleOutlineIcon  fontSize="small"/>
-							}
+							startIcon={<AddCircleOutlineIcon fontSize="small" />}
 							type="submit"
 						>
 							Salvar
 						</Button>
 					</Grid>
-
 				</Grid>
-
-
 				<Card sx={{ mb: 3 }}>
 					<CardContent>
-						<Grid
-							container
-							spacing={3}
-						>
-							<Grid
-								item
-								md={12}
-								xs={12}
-							>
+						<Grid container spacing={3}>
+							<Grid item md={12} xs={12}>
 								<TextField
 									fullWidth
 									label="Título"
 									size="small"
 									variant="outlined"
-									helperText={
-										errors
-											.name
-											?.message
-									}
+									helperText={errors.name?.message}
 									error={Boolean(errors.name)}
-									{...register(
-										"name",
-									)}
+									{...register("name")}
 								/>
 							</Grid>
-
-							<Grid
-								item
-								md={12}
-								xs={12}
-							> 
+							<Grid item md={12} xs={12}> 
 								<FormControl fullWidth>
 									<DropZoneUpload
-										name='image'
+										name="image"
 										error={Boolean(errors.image)}
-										helperText={Boolean(errors.image) ? `${errors.image?.message}` : ''}
+										helperText={errors.image ? `${errors.image?.message}` : ''}
 										setValue={(value: string) => {
-											console.log(value)
-											setValue('image', value)
+											console.log(value);
+											setValue("image", value);
 										}}
-										clearErrors={() => clearErrors('image')}
-
+										clearErrors={() => clearErrors("image")}
 									/>
 								</FormControl>
 							</Grid>
@@ -213,5 +149,3 @@ const CreateCategory = () => {
 };
 
 export default CreateCategory;
-
-

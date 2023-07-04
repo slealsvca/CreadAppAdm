@@ -1,3 +1,6 @@
+import React, { useEffect, useState } from "react";
+
+// @ Mui
 import {
 	Box,
 	Button,
@@ -16,42 +19,46 @@ import {
 	Tooltip,
 	Typography,
 } from "@mui/material";
-import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
-import { parseCookies } from "nookies";
-import HeadComponent from "../../../components/Head";
-import { yupResolver } from "@hookform/resolvers/yup";
-import {
-	Controller,
-	useForm,
-} from "react-hook-form";
-
-import { SchemaPublication, initial } from "../../../utils/validation/schemaPublication";
-import DropZoneUpload from "../../../components/DropZoneUpload";
-import { Loader } from "../../../components/Loader";
-import {
-	PublicationType,
-} from "../../../data/@types/publication";
-import {
-	createPublication,
-} from "../../../store/api/publication";
-import { ModalConfirm } from "../../../components/Modal";
-import {
-	useEffect,
-	useState,
-} from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FileDownloadDoneIcon from '@mui/icons-material/FileDownloadDone';
-import { categories } from "../../../data/@types/categories";
+import InfoIcon from '@mui/icons-material/Info';
+
+
+// @ Components
+import { DashboardLayout } from "../../../components/DashboardSidebar/dashboard-layout";
+import DropZoneUpload from "../../../components/DropZoneUpload";
+import { EditorWrapper } from "../../../components/EditorWrapper";
+import HeadComponent from "../../../components/Head";
+import { Loader } from "../../../components/Loader";
+
+// @ Services
+import { GetCategory } from "../../../store/api/publication/categories";
+
+// @ Nookies
+import { parseCookies } from "nookies";
+
+// @  Validation
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+
+
+// @ Utils
 import { categorys } from "../../../utils/utilsPublications";
+import { SchemaPublication, initial } from "../../../utils/validation/schemaPublication";
+import { PublicationType } from "../../../data/@types/publication";
+import { createPublication } from "../../../store/api/publication";
+import { ModalConfirm } from "../../../components/Modal";
+
+// @ Types
+import { categories } from "../../../data/@types/categories";
+
+// @ Next Hooks
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { GetCategory } from "../../../store/api/publication/categories";
-import InfoIcon from '@mui/icons-material/Info';
-import { EditorWrapper } from "../../../components/EditorWrapper";
 
 const Customers = () => {
-	const { "interfin-id": id } =
-		parseCookies();
+	const { "interfin-id": id } = parseCookies();
+
 	const [open, setOpen] = useState(false);
 	const router = useRouter();
 	const [category, setCategory] = useState<categories[]>(categorys);
@@ -76,12 +83,8 @@ const Customers = () => {
 	const onSubmit = async (
 		values: PublicationType,
 	) => {
-		console.log(values);
 		const response = await createPublication(values, id);
-		if (response?.status === 201) {
-			reset(initial);
-			setOpen(!open);
-		}
+		if (response?.status === 201) setOpen(!open);
 	};
 
 	const getCategory = async () => {
@@ -96,8 +99,12 @@ const Customers = () => {
 		getCategory();
 	}, []);
 
-	const handleClose = () =>
+	const handleClose = () => {
 		setOpen(!open);
+		reset(initial);
+		router.back();
+	}
+
 	return (
 		<DashboardLayout>
 			<HeadComponent title="Publications" />
@@ -122,13 +129,7 @@ const Customers = () => {
 					}
 					subTitle="Publicação cadastrada com sucesso"
 				/>
-				{isSubmitting && (
-					<Loader
-						loading={
-							isSubmitting
-						}
-					/>
-				)}
+				{isSubmitting && (<Loader loading={isSubmitting} />)}
 				<Box
 					display="flex"
 					justifyContent="space-between"
@@ -152,12 +153,8 @@ const Customers = () => {
 							size="small"
 							color="primary"
 							variant="outlined"
-							startIcon={
-								<ArrowBackIcon />
-							}
-							onClick={() => {
-								router.back()
-							}}
+							startIcon={<ArrowBackIcon />}
+							onClick={() => router.back()}
 						>
 							Voltar
 						</Button>
@@ -165,23 +162,17 @@ const Customers = () => {
 							size="small"
 							color="primary"
 							variant="contained"
-							startIcon={
-								<FileDownloadDoneIcon />
-							}
+							startIcon={<FileDownloadDoneIcon />}
 							type="submit"
 						>
-							Publicar
-							artigo
+							Publicar artigo
 						</Button>
 					</Box>
 				</Box>
 
 				<Card sx={{ mb: 3 }}>
 					<CardContent>
-						<Grid
-							container
-							spacing={3}
-						>
+						<Grid container spacing={3}>
 							<Grid
 								item
 								lg={6}
@@ -223,37 +214,20 @@ const Customers = () => {
 										render={({
 											field: {
 												onChange,
-												onBlur,
 												value,
 												name,
-												ref,
 											},
 										}) => (
 											<Select
-
 												label="Categoria"
-												value={
-													value
-												}
-												name={
-													name
-												}
-												onChange={
-													onChange
-												}
-												onBlur={
-													onBlur
-												}
-												inputRef={
-													ref
-												}
+												value={value}
+												name={name}
+												onChange={onChange}
 												error={Boolean(errors?.category)}
 											>
 												<MenuItem value="">
 													<em>
-														Selecione
-														uma
-														categoria
+														Selecione uma categoria
 													</em>
 												</MenuItem>
 												{category?.map(item => (
@@ -262,26 +236,17 @@ const Customers = () => {
 														value={item?.id}
 													>
 														{item?.name}
-
 													</MenuItem>
 												),
 												)}
 											</Select>
 										)}
 										name="category"
-										control={
-											control
-										}
+										control={control}
 									/>
 									{errors.category && (
-										<FormHelperText
-											error
-										>
-											{
-												errors
-													.category
-													?.message
-											}
+										<FormHelperText error>
+											{errors.category?.message}
 										</FormHelperText>
 									)}
 								</FormControl>
@@ -297,12 +262,8 @@ const Customers = () => {
 
 								<FormGroup >
 									<FormControlLabel
-										control={
-											<Checkbox />
-										}
-										{...register(
-											"isBanners",
-										)}
+										control={<Checkbox />}
+										{...register("isBanners")}
 										label="Produto"
 									/>
 
@@ -328,12 +289,8 @@ const Customers = () => {
 									placeholder="Adicione a url do vídeo"
 									variant="outlined"
 									helperText={errors.video_url?.message}
-									error={
-										Boolean(errors.video_url)
-									}
-									{...register(
-										"video_url",
-									)}
+									error={Boolean(errors.video_url)}
+									{...register("video_url")}
 								/>
 							</Grid>
 							<Grid
@@ -393,14 +350,8 @@ const Customers = () => {
 										control={control}
 										name="content"
 									/>
-									<FormHelperText
-										error
-									>
-										{
-											errors
-												.content
-												?.message
-										}
+									<FormHelperText error>
+										{errors.content?.message}
 									</FormHelperText>
 
 								</FormControl>
@@ -415,9 +366,8 @@ const Customers = () => {
 										name='file'
 										clearErrors={() => clearErrors('file')}
 										error={Boolean(errors.file)}
-										helperText={Boolean(errors.file) ? `${errors.file?.message}` : ''}
-										setValue={(value: string) => {
-											console.log(value)
+										helperText={errors.file ? `${errors.file?.message}` : ''}
+										setValue={(value: string) => { 
 											setValue('file', value)
 										}}
 
